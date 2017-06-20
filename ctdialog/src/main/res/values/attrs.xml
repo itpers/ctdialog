@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 上图片下文字 -->
+    <declare-styleable name="ImageText">
+        <attr name="itSrc" format="reference" />
+        <attr name="itText" format="reference|string" />
+        <attr name="textColor" format="reference|color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="imageSize" format="dimension" />
+    </declare-styleable>
+</resources>

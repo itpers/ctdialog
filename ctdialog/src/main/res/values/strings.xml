@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CTDialog</string>
+
+    <string name="ct_dialog_progress_tip">加载中...</string>
+    <string name="ct_dialog_process_tip">加载中...</string>
+    <string name="ct_dialog_title">提示</string>
+    <string name="ct_dialog_cancel">取消</string>
+    <string name="ct_dialog_confirm">确定</string>
+</resources>

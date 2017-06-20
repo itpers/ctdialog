@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_positive"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ct_selector_item_dimen"
+        android:text="相册"
+        android:background="@drawable/selector_shape_dialog_middle"
+        android:gravity="center"
+        android:textColor="@color/ct_black"
+        android:textSize="16sp"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ct_line_dimen"
+        android:background="@color/ct_line_color_1"/>
+
+</LinearLayout>

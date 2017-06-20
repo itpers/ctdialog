@@ -1,0 +1,15 @@
+<resources>
+    <color name="colorPrimary">#4285f4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="ct_translucent_white">#f5ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="ct_transparent_background">#f5EEEEEE</color>
+    <color name="ct_progress_bar_color">#AEAEAE</color>
+    <color name="ct_line_color">#E0E0E0</color>
+    <color name="ct_line_color_1">#EDEDED</color>
+    <color name="ct_gray">#FF787878</color>
+    <color name="ct_gray_1">#FF5E5E5E</color>
+    <color name="ct_black">#333333</color>
+    <!-- A light Holo shade of red -->
+    <color name="ct_red">#ffff4444</color>
+</resources>

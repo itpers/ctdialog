@@ -1,4 +1,4 @@
-package com.beike.ctdialog.actionsheet;
+package com.beike.ctdialog.pickpopup;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -10,9 +10,9 @@ import com.beike.ctdialog.iterface.IActionClickListener;
 /**
  * Created by liupeng on 2017/6/15.
  */
-public class CTActionSheet extends PopupWindow {
+public class CTPickPopup extends PopupWindow {
 
-    private ActionSheetController controller;
+    private PickPopupController controller;
 
     @Override
     public int getWidth() {
@@ -24,8 +24,8 @@ public class CTActionSheet extends PopupWindow {
         return controller.popuView.getMeasuredHeight();
     }
 
-    private CTActionSheet(Context context) {
-        controller = new ActionSheetController(context, this);
+    private CTPickPopup(Context context) {
+        controller = new PickPopupController(context, this);
     }
 
     @Override
@@ -35,10 +35,10 @@ public class CTActionSheet extends PopupWindow {
     }
 
     public static class Builder {
-        private ActionSheetController.PopupParams params;
+        private PickPopupController.PopupParams params;
 
         public Builder(Context context) {
-            params = new ActionSheetController.PopupParams(context);
+            params = new PickPopupController.PopupParams(context);
         }
 
         public Builder setTitle(String title) {
@@ -47,7 +47,7 @@ public class CTActionSheet extends PopupWindow {
             return this;
         }
 
-        public Builder addNegativeAction(String action) {
+        public Builder addPositiveAction(String action) {
             params.actionMap.put(action, true);
             return this;
         }
@@ -72,8 +72,8 @@ public class CTActionSheet extends PopupWindow {
             return this;
         }
 
-        public CTActionSheet create() {
-            final CTActionSheet popuWindow = new CTActionSheet(params.context);
+        public CTPickPopup create() {
+            final CTPickPopup popuWindow = new CTPickPopup(params.context);
             params.apply(popuWindow.controller);
 
             int measure = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);

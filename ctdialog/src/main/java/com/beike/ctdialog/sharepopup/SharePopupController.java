@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.beike.ctdialog.R;
@@ -46,7 +44,7 @@ public class SharePopupController {
      * 装载布局
      */
     public void installContent() {
-        popuView = LayoutInflater.from(context).inflate(R.layout.dialog_share_layout, null);
+        popuView = LayoutInflater.from(context).inflate(R.layout.popup_share_layout, null);
 
         popuView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override

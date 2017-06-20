@@ -1,4 +1,4 @@
-package com.beike.ctdialog.actionsheet;
+package com.beike.ctdialog.pickpopup;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,19 +16,16 @@ import android.widget.TextView;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IActionClickListener;
-import com.beike.ctdialog.utils.DensityUtil;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by liupeng on 2017/6/15.
  */
 
-public class ActionSheetController {
+public class PickPopupController {
     private Context context;
     private PopupWindow popupWindow;
     public View popuView;
@@ -37,7 +34,7 @@ public class ActionSheetController {
     private LinearLayout linearLayout;
     private Boolean isShowTitle = false;
 
-    public ActionSheetController(Context context, PopupWindow popupWindow) {
+    public PickPopupController(Context context, PopupWindow popupWindow) {
         this.context = context;
         this.popupWindow = popupWindow;
     }
@@ -46,7 +43,7 @@ public class ActionSheetController {
      * 装载布局
      */
     public void installContent() {
-        popuView = LayoutInflater.from(context).inflate(R.layout.dialog_selector_layout, null);
+        popuView = LayoutInflater.from(context).inflate(R.layout.popup_pick_layout, null);
 
         popuView.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +199,7 @@ public class ActionSheetController {
             this.context = context;
         }
 
-        public void apply(ActionSheetController controller) {
+        public void apply(PickPopupController controller) {
 
             controller.installContent();
             controller.setActionClickListener(clickListener);

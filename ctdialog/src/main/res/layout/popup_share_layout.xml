@@ -45,7 +45,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_marginLeft="15dp"-->
             <!--imageText:imageSize="50dp"-->
-            <!--imageText:itSrc="@mipmap/ic_share_wx_to_timeline"-->
+            <!--imageText:itSrc="@mipmap/ic_share_to_wx_timeline"-->
             <!--imageText:itText="朋友圈"-->
             <!--imageText:textColor="@color/ct_gray"-->
             <!--imageText:textSize="13sp" />-->
@@ -101,6 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/ct_selector_item_dimen"
         android:text="@string/ct_dialog_cancel"
+        android:textStyle="bold"
         android:background="@drawable/selector_shape_dialog_selector_cancel"
         android:gravity="center"
         android:textColor="@color/colorPrimary"

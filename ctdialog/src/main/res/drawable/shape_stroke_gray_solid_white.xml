@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--<solid android:color="@color/white" />-->
+
+    <stroke
+        android:color="@color/ct_progress_bar_color"
+        android:width="@dimen/ct_line_dimen"/>
+
+    <corners android:radius="@dimen/ct_radius_small" />
+
+</shape>

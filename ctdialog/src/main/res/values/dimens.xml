@@ -6,6 +6,7 @@
     <dimen name="ct_selector_text_dimen">16sp</dimen>
 
     <dimen name="ct_progress_bar_radius">5dp</dimen>
+    <dimen name="ct_radius_small">3dp</dimen>
     <dimen name="ct_progress_dialog_radius">10dp</dimen>
     <dimen name="ct_procress_dialog_radius">10dp</dimen>
     <dimen name="ct_common_dialog_radius">10dp</dimen>

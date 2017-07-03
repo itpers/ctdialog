@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.beike.ctdialog.CTCommonDialog;
+import com.beike.ctdialog.CTInputDialog;
 import com.beike.ctdialog.CTProcessDialog;
 import com.beike.ctdialog.CTProgressDialog;
+import com.beike.ctdialog.iterface.IDialogInputListener;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.iterface.IActionClickListener;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
@@ -36,10 +38,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showCommonDilaog() {
-        CTCommonDialog commonDialog = new CTCommonDialog(context, "测试测试测试测", new IDialogCommonListener() {
+//        CTCommonDialog commonDialog = new CTCommonDialog(context, "测试测试测试测", new IDialogCommonListener() {
+//            @Override
+//            public void onConfirm() {
+//                showProcessDilalog();
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//
+//            }
+//        });
+//        commonDialog.show();
+
+        CTInputDialog inputDialog = new CTInputDialog(context,"新建文档", "请输入名字", new IDialogInputListener() {
             @Override
-            public void onConfirm() {
-                showProcessDilalog();
+            public void onConfirm(String input) {
+                Toast.makeText(context, input+"", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -47,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        commonDialog.show();
+        inputDialog.show();
     }
 
     public void showProcessDilalog() {
@@ -76,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     public void showPopup() {
 
         new CTPickPopup.Builder(context)
-//                .setTitle("标题")
+                .setTitle("标题")
                 .addAction("照片")
                 .addAction("相机")
 //                .addNegativeAction("退出")

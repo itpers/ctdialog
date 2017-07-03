@@ -16,16 +16,19 @@
         android:textColor="@color/ct_black"
         android:textSize="17sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/tv_msg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="是否要删除"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text=""
+        android:hint="请输入名字"
+        android:maxLines="3"
+        android:background="@drawable/shape_stroke_gray_solid_white"
         android:textColor="@color/ct_black"
         android:textSize="14sp" />
 

@@ -1,8 +1,8 @@
 <resources>
 
     <style name="ActionSheetStyle" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
-        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+        <item name="android:windowEnterAnimation">@anim/ct_push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/ct_push_bottom_out</item>
     </style>
 
 </resources>

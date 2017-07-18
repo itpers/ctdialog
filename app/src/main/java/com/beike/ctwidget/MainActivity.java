@@ -8,10 +8,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.beike.ctdialog.CTCommonDialog;
-import com.beike.ctdialog.CTInputDialog;
+import com.beike.ctdialog.CTIOSLoadingDialog;
 import com.beike.ctdialog.CTProcessDialog;
 import com.beike.ctdialog.CTProgressDialog;
-import com.beike.ctdialog.iterface.IDialogInputListener;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.iterface.IActionClickListener;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
@@ -31,30 +30,17 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_click).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCommonDilaog();
+                showLoadingDilalog();
             }
         });
     }
 
 
     public void showCommonDilaog() {
-//        CTCommonDialog commonDialog = new CTCommonDialog(context, "测试测试测试测", new IDialogCommonListener() {
-//            @Override
-//            public void onConfirm() {
-//                showProcessDilalog();
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//
-//            }
-//        });
-//        commonDialog.show();
-
-        CTInputDialog inputDialog = new CTInputDialog(context,"新建文档", "请输入名字", new IDialogInputListener() {
+        CTCommonDialog commonDialog = new CTCommonDialog(context, "测试测试测试测", new IDialogCommonListener() {
             @Override
-            public void onConfirm(String input) {
-                Toast.makeText(context, input+"", Toast.LENGTH_SHORT).show();
+            public void onConfirm() {
+                showProcessDilalog();
             }
 
             @Override
@@ -62,7 +48,31 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        inputDialog.show();
+        commonDialog.show();
+
+//        CTInputDialog inputDialog = new CTInputDialog(context,"新建文档", "请输入名字", new IDialogInputListener() {
+//            @Override
+//            public void onConfirm(String input) {
+//                Toast.makeText(context, input+"", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//
+//            }
+//        });
+//        inputDialog.show();
+    }
+
+    public void showLoadingDilalog() {
+        CTIOSLoadingDialog loadingDialog = new CTIOSLoadingDialog(context);
+        loadingDialog.show();
+        loadingDialog.setCancelDialogListener(new ICancelDialogListener() {
+            @Override
+            public void cancel() {
+                showCommonDilaog();
+            }
+        });
     }
 
     public void showProcessDilalog() {

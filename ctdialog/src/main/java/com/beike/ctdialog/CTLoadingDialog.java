@@ -18,7 +18,7 @@ import com.beike.ctdialog.utils.DensityUtil;
  * 自定义加载对话框
  * Created by liupeng on 2017/5/19.
  */
-public class CTProcessDialog extends AlertDialog {
+public class CTLoadingDialog extends AlertDialog {
 
     private Context context = null;
 
@@ -30,17 +30,17 @@ public class CTProcessDialog extends AlertDialog {
     private ICancelDialogListener cancelDialogListener;
 
 
-    public CTProcessDialog(@Nullable Context context) {
+    public CTLoadingDialog(@Nullable Context context) {
         this(context, null, true, false, null);
     }
 
 
-    public CTProcessDialog(@Nullable Context context, String message) {
+    public CTLoadingDialog(@Nullable Context context, String message) {
         this(context, message, true, false, null);
     }
 
 
-    public CTProcessDialog(@Nullable Context context, String message, boolean cancelable, boolean outsideCancelable, ICancelDialogListener cancelDialogListener) {
+    public CTLoadingDialog(@Nullable Context context, String message, boolean cancelable, boolean outsideCancelable, ICancelDialogListener cancelDialogListener) {
         super(context);
         this.context = context;
         this.message = message;

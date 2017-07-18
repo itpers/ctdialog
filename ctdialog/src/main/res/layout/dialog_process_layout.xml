@@ -3,26 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_procress_dialog_bg"
+    android:gravity="center"
     android:paddingTop="20dp"
     android:paddingBottom="20dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp" >
 
-    <ProgressBar
+    <ImageView
+        android:id="@+id/iv_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/tv_content"
         android:minWidth="30dp"
         android:minHeight="30dp"
-        android:layout_marginRight="15dp"
-        android:indeterminateDrawable="@drawable/progress"/>
+        android:src="@mipmap/ic_loading"/>
 
     <TextView
-        android:id="@+id/tv_content"
+        android:id="@+id/tv_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/iv_loading"
         android:text="@string/ct_dialog_process_tip"
         android:textColor="@color/ct_black"
         android:textSize="15sp" />

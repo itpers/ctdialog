@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.beike.ctdialog.CTCommonDialog;
 import com.beike.ctdialog.CTIOSLoadingDialog;
-import com.beike.ctdialog.CTProcessDialog;
+import com.beike.ctdialog.CTLoadingDialog;
 import com.beike.ctdialog.CTProgressDialog;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.iterface.IActionClickListener;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showProcessDilalog() {
-        CTProcessDialog processDialog = new CTProcessDialog(context);
+        CTLoadingDialog processDialog = new CTLoadingDialog(context);
         processDialog.show();
         processDialog.setCancelDialogListener(new ICancelDialogListener() {
             @Override

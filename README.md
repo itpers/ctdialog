@@ -1,6 +1,6 @@
 ## ctdialog
 
-实现 Android各种对话框
+实现 Android各种对话框 示例见:app/src/main/java/com/beike/ctwidget/MainActivity.java
 
 ### 普通对话框 CTCommonDialog
 

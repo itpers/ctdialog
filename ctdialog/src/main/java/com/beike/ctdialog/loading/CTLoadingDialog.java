@@ -1,4 +1,4 @@
-package com.beike.ctdialog;
+package com.beike.ctdialog.loading;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,8 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.utils.DensityUtil;
 
@@ -15,10 +19,11 @@ import com.beike.ctdialog.utils.DensityUtil;
  * 自定义加载对话框
  * Created by liupeng on 2017/5/19.
  */
-public class CTIOSLoadingDialog extends AlertDialog {
+public class CTLoadingDialog extends AlertDialog {
 
     private Context context = null;
 
+    private ImageView ivLoading = null;
     private TextView tvMessage = null;
 
     private String message;
@@ -26,17 +31,17 @@ public class CTIOSLoadingDialog extends AlertDialog {
     private ICancelDialogListener cancelDialogListener;
 
 
-    public CTIOSLoadingDialog(@Nullable Context context) {
+    public CTLoadingDialog(@Nullable Context context) {
         this(context, null, true, false, null);
     }
 
 
-    public CTIOSLoadingDialog(@Nullable Context context, String message) {
+    public CTLoadingDialog(@Nullable Context context, String message) {
         this(context, message, true, false, null);
     }
 
 
-    public CTIOSLoadingDialog(@Nullable Context context, String message, boolean cancelable, boolean outsideCancelable, ICancelDialogListener cancelDialogListener) {
+    public CTLoadingDialog(@Nullable Context context, String message, boolean cancelable, boolean outsideCancelable, ICancelDialogListener cancelDialogListener) {
         super(context);
         this.context = context;
         this.message = message;
@@ -49,16 +54,19 @@ public class CTIOSLoadingDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.dialog_ios_loading_layout);
+        setContentView(R.layout.dialog_process_layout);
 
         WindowManager.LayoutParams p = getWindow().getAttributes();
-        p.dimAmount = 0.0f;
-        p.width = DensityUtil.dip2px(context, 100);
-        p.height = DensityUtil.dip2px(context, 100);
+        p.dimAmount = 0.4f;
+        p.width = DensityUtil.dip2px(context, 240);
         getWindow().setBackgroundDrawableResource(R.color.transparent);
         getWindow().setAttributes(p);
 
+        ivLoading = (ImageView) findViewById(R.id.iv_loading);
         tvMessage = (TextView) findViewById(R.id.tv_msg);
+
+        Animation rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.ct_loading);
+        ivLoading.startAnimation(rotateAnimation);
 
         setMessage(message);
     }

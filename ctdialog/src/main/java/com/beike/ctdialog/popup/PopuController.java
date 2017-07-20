@@ -16,7 +16,7 @@ import android.widget.PopupWindow;
 
 public class PopuController {
     private int layoutRId;
-    private Context context;
+    public Context context;
     private PopupWindow popupWindow;
     public View popuView;
     private View view;
@@ -81,7 +81,7 @@ public class PopuController {
      */
     public void setBackgroundLevel(float level) {
         window = ((Activity)context).getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         WindowManager.LayoutParams params = window.getAttributes();
         params.alpha = level;
         window.setAttributes(params);

@@ -3,6 +3,7 @@ package com.beike.ctdialog.pickpopup;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.beike.ctdialog.iterface.IActionClickListener;
@@ -47,7 +48,7 @@ public class CTPickPopup extends PopupWindow {
             return this;
         }
 
-        public Builder addPositiveAction(String action) {
+        public Builder addConfirmAction(String action) {
             params.actionMap.put(action, true);
             return this;
         }

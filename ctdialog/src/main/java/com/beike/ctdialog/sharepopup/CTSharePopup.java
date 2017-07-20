@@ -2,6 +2,7 @@ package com.beike.ctdialog.sharepopup;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.PopupWindow;
@@ -42,14 +43,15 @@ public class CTSharePopup extends PopupWindow {
             params = new SharePopupController.PopupParams(context);
         }
 
-        public Builder setIsShowTitle(boolean isShowTitle) {
-            params.isShowTitle = isShowTitle;
-            return this;
-        }
-
         public Builder setTitle(String title) {
             if (TextUtils.isEmpty(title)) return this;
             params.title = title;
+            return this;
+        }
+
+        public Builder setTitle(@StringRes int titleRid) {
+            if (titleRid <= 0) return this;
+            params.title = params.context.getText(titleRid).toString();
             return this;
         }
 

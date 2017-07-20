@@ -1,4 +1,4 @@
-package com.beike.ctdialog;
+package com.beike.ctdialog.progress;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.utils.DensityUtil;
 

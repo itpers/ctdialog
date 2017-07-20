@@ -4,76 +4,86 @@
     android:layout_height="wrap_content"
     android:background="@drawable/shape_dialog_bg">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="@string/ct_dialog_title"
-        android:textColor="@color/ct_black"
-        android:textSize="17sp" />
-
-    <EditText
-        android:id="@+id/tv_msg"
+    <RelativeLayout
+        android:id="@+id/relative_top_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_title"
-        android:layout_marginTop="15dp"
-        android:padding="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text=""
-        android:hint="请输入名字"
-        android:maxLines="3"
-        android:background="@drawable/shape_stroke_gray_solid_white"
-        android:textColor="@color/ct_black"
-        android:textSize="14sp" />
+        android:background="@drawable/selector_shape_dialog_top_half">
 
-    <View
-        android:id="@+id/line"
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/ct_dialog_title"
+            android:textColor="@color/ct_black"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_stroke_gray_solid_white"
+            android:hint="请输入名字"
+            android:maxLines="3"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/ct_black"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ct_line_dimen"
+            android:layout_below="@id/tv_msg"
+            android:layout_marginTop="20dp"
+            android:background="@color/ct_line_color" />
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ct_line_dimen"
-        android:layout_below="@id/tv_msg"
-        android:layout_marginTop="20dp"
-        android:background="@color/ct_line_color" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative_top_area"
+        android:orientation="horizontal">
 
-    <View
-        android:id="@+id/line1"
-        android:layout_width="@dimen/ct_line_dimen"
-        android:layout_height="45dp"
-        android:layout_below="@id/line"
-        android:layout_centerHorizontal="true"
-        android:background="@color/ct_line_color" />
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_shape_dialog_left_bottom"
+            android:gravity="center"
+            android:text="@string/ct_dialog_cancel"
+            android:textColor="@color/ct_colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/line"
-        android:layout_toLeftOf="@id/line1"
-        android:background="@drawable/selector_shape_dialog_left_bottom"
-        android:gravity="center"
-        android:text="@string/ct_dialog_cancel"
-        android:textColor="@color/ct_colorPrimary"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <View
+            android:id="@+id/line1"
+            android:layout_width="@dimen/ct_line_dimen"
+            android:layout_height="45dp"
+            android:background="@color/ct_line_color" />
 
-    <TextView
-        android:id="@+id/tv_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/line"
-        android:layout_toRightOf="@id/line1"
-        android:background="@drawable/selector_shape_dialog_right_bottom"
-        android:gravity="center"
-        android:text="@string/ct_dialog_confirm"
-        android:textColor="@color/ct_colorPrimary"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_shape_dialog_right_bottom"
+            android:gravity="center"
+            android:text="@string/ct_dialog_confirm"
+            android:textColor="@color/ct_colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </RelativeLayout>

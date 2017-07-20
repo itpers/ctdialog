@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.beike.ctwidget.MainActivity">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="hehehe"/>
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <Button
-        android:id="@+id/bt_click"
+        android:id="@+id/bt_common_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_centerInParent="true"/>
+        android:text="普通弹窗"/>
 
     <Button
-        android:layout_below="@id/bt_click"
+        android:id="@+id/bt_input_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!ddddddddddddddddd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_centerInParent="true"/>
+        android:text="输入框弹窗"/>
 
     <Button
-        android:layout_above="@id/bt_click"
+        android:id="@+id/bt_pick_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Worldddddddddddd!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_centerInParent="true"/>
+        android:text="选择弹窗"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/bt_share_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="分享弹窗"/>
+
+    <Button
+        android:id="@+id/bt_loding_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加载框"/>
+
+    <Button
+        android:id="@+id/bt_progress_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="进度条"/>
+
+</LinearLayout>

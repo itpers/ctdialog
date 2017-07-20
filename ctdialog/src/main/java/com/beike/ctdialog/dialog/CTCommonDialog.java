@@ -1,4 +1,4 @@
-package com.beike.ctdialog;
+package com.beike.ctdialog.dialog;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,54 +9,55 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.beike.ctdialog.iterface.IDialogInputListener;
+import com.beike.ctdialog.R;
+import com.beike.ctdialog.iterface.IDialogCommonListener;
 
 /**
  * Created by liupeng on 2017/6/19.
  */
 
-public class CTInputDialog extends AlertDialog{
+public class CTCommonDialog extends AlertDialog{
 
     private TextView tvTitle;
-    private EditText tvMessage;
+    private TextView tvMessage;
     private TextView tvCancel;
     private TextView tvConfirm;
 
     private String title;
-    private String inputHint;
+    private String message;
     private String cancel;
     private String confirm;
 
-//    private Context context;
+    private Context context;
 
-    private IDialogInputListener inputListener;
+    private IDialogCommonListener commonListener;
 
-    public CTInputDialog(@NonNull Context context, String inputHint, @Nullable IDialogInputListener inputListener) {
-        this(context, "", inputHint, "", "", true, true, inputListener);
+    public CTCommonDialog(@NonNull Context context, String message, @Nullable IDialogCommonListener commonListener) {
+        this(context, "", message, "", "", true, true, commonListener);
     }
 
-    public CTInputDialog(@NonNull Context context, String inputHint, boolean cancelable, boolean outsideCancelable, @Nullable IDialogInputListener inputListener) {
-        this(context, "", inputHint, "", "", cancelable, outsideCancelable, inputListener);
+    public CTCommonDialog(@NonNull Context context, String message, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCommonListener commonListener) {
+        this(context, "", message, "", "", cancelable, outsideCancelable, commonListener);
     }
 
-    public CTInputDialog(@NonNull Context context, String title, String inputHint, @Nullable IDialogInputListener inputListener) {
-        this(context, title, inputHint, "", "", true, true, inputListener);
+    public CTCommonDialog(@NonNull Context context, String title, String message, @Nullable IDialogCommonListener commonListener) {
+        this(context, title, message, "", "", true, true, commonListener);
     }
 
-    public CTInputDialog(@NonNull Context context, String title, String inputHint, boolean cancelable, boolean outsideCancelable, @Nullable IDialogInputListener inputListener) {
-        this(context, title, inputHint, "", "", cancelable, outsideCancelable, inputListener);
+    public CTCommonDialog(@NonNull Context context, String title, String message, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCommonListener commonListener) {
+        this(context, title, message, "", "", cancelable, outsideCancelable, commonListener);
     }
 
-    public CTInputDialog(@NonNull Context context, String title, String inputHint, String cancel, String confirm, boolean cancelable, boolean outsideCancelable, @Nullable IDialogInputListener inputListener) {
+    public CTCommonDialog(@NonNull Context context, String title, String message, String cancel, String confirm, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCommonListener commonListener) {
         super(context);
+//        this.context = context;
         this.title = title;
-        this.inputHint = inputHint;
+        this.message = message;
         this.cancel = cancel;
         this.confirm = confirm;
-        this.inputListener = inputListener;
+        this.commonListener = commonListener;
         setCancelable(cancelable);
         setCanceledOnTouchOutside(outsideCancelable);
     }
@@ -64,7 +65,7 @@ public class CTInputDialog extends AlertDialog{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_input_layout);
+        setContentView(R.layout.dialog_common_layout);
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindow().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -76,7 +77,7 @@ public class CTInputDialog extends AlertDialog{
         getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
-        tvMessage = (EditText) findViewById(R.id.tv_msg);
+        tvMessage = (TextView) findViewById(R.id.tv_msg);
         tvCancel = (TextView) findViewById(R.id.tv_cancel);
         tvConfirm = (TextView) findViewById(R.id.tv_confirm);
 
@@ -86,8 +87,10 @@ public class CTInputDialog extends AlertDialog{
             tvTitle.setText(title);
         }
 
-        if (!"".equals(inputHint)){
-            tvMessage.setHint(inputHint);
+        if (message == null) {
+            tvMessage.setVisibility(View.GONE);
+        } else if (!"".equals(message)){
+            tvMessage.setText(message);
         }
 
         if (cancel == null) {
@@ -105,8 +108,8 @@ public class CTInputDialog extends AlertDialog{
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inputListener != null) {
-                    inputListener.onCancel();
+                if (commonListener != null) {
+                    commonListener.onCancel();
                 }
                 dismiss();
             }
@@ -115,15 +118,12 @@ public class CTInputDialog extends AlertDialog{
         tvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inputListener != null) {
-                    inputListener.onConfirm(getInput());
+                if (commonListener != null) {
+                    commonListener.onConfirm();
                 }
                 dismiss();
             }
         });
-
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
     @Override
@@ -132,12 +132,9 @@ public class CTInputDialog extends AlertDialog{
         tvTitle.setText(title);
     }
 
-    public String getInput() {
-        return tvMessage.getText().toString();
-    }
-
-    public void setHint(CharSequence hint) {
-        if (TextUtils.isEmpty(hint)) return;
-        tvMessage.setHint(hint);
+    @Override
+    public void setMessage(CharSequence message) {
+        if (TextUtils.isEmpty(message)) return;
+        tvMessage.setText(message);
     }
 }

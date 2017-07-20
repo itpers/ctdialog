@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IActionClickListener;
+import com.beike.ctdialog.utils.DensityUtil;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -82,15 +83,20 @@ public class PickPopupController {
 
         Iterator<Map.Entry<String, Boolean>> iterator = actionMap.entrySet().iterator();
         int i=0;
+        int textViewHeight = context.getResources().getDimensionPixelSize(R.dimen.ct_selector_item_dimen);
+        int textViewPadding = DensityUtil.dip2px(context, 10);
         while (iterator.hasNext()) {
             i++;
             Map.Entry<String, Boolean> entry = iterator.next();
 
             TextView textView = new TextView(context);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, context.getResources().getDimensionPixelSize(R.dimen.ct_selector_item_dimen));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, textViewHeight);
             textView.setText(entry.getKey());
             textView.setTextColor(context.getResources().getColor(entry.getValue() ? R.color.ct_red : R.color.ct_black));
+            textView.setMaxLines(1);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setTextSize(16);
+            textView.setPadding(textViewPadding, 0, textViewPadding, 0);
             textView.setGravity(Gravity.CENTER);
 
             final int index = i;
@@ -160,7 +166,7 @@ public class PickPopupController {
      */
     public void setBackgroundLevel(float level) {
         window = ((Activity)context).getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         WindowManager.LayoutParams params = window.getAttributes();
         params.alpha = level;
         window.setAttributes(params);

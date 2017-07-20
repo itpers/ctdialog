@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -60,47 +61,46 @@ public class SharePopupController {
 
     }
 
-    public void addAction(LinkedHashMap<Drawable, String> actionMap, int imageSize, int textSize, int textColor, String title, boolean isShowTitle, boolean isControl, boolean isShowControl) {
+    public void addAction(LinkedHashMap<Drawable, String> actionMap, int imageSize, int textSize, int textColor, String title, boolean isControl, boolean isShowControl) {
         LinearLayout linearLayout;
+        HorizontalScrollView scrollView;
+        boolean isShowTitle = !TextUtils.isEmpty(title);
+
         if (isControl) {
+            scrollView = (HorizontalScrollView) popuView.findViewById(R.id.control_scrollview);
             linearLayout = (LinearLayout) popuView.findViewById(R.id.linear_contorl);
-            linearLayout.setVisibility(View.VISIBLE);
+            scrollView.setVisibility(View.VISIBLE);
             popuView.findViewById(R.id.line).setVisibility(View.VISIBLE);
         } else {
+            scrollView = (HorizontalScrollView) popuView.findViewById(R.id.share_scrollview);
             linearLayout = (LinearLayout) popuView.findViewById(R.id.linear_share);
 
             if (isShowControl) {
                 if (isShowTitle) {
-                    linearLayout.setBackgroundResource(R.drawable.selector_shape_dialog_middle);
+                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_middle);
                 } else {
-                    linearLayout.setBackgroundResource(R.drawable.selector_shape_dialog_top_half);
+                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_top_half);
                 }
             } else {
                 if (isShowTitle) {
-                    linearLayout.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
+                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
                 } else {
-                    linearLayout.setBackgroundResource(R.drawable.selector_shape_dialog_selector_cancel);
+                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_selector_cancel);
                 }
-            }
-
-            TextView tvTitle = (TextView) popuView.findViewById(R.id.share_title);
-            if (isShowTitle) {
-                if (!TextUtils.isEmpty(title)) {
-                    tvTitle.setText(title);
-                }
-            } else {
-                tvTitle.setVisibility(View.INVISIBLE);
             }
         }
 
-        Iterator<Map.Entry<Drawable, String>> iterator = actionMap.entrySet().iterator();
-        while (iterator.hasNext()) {
+        int imageTextMargin = DensityUtil.dip2px(context, 10);
+        int i = 0;
+        for (Map.Entry<Drawable, String> entry : actionMap.entrySet()) {
             index++;
-            Map.Entry<Drawable, String> entry = iterator.next();
-
+            i++;
             ImageText imageText = new ImageText(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.leftMargin = DensityUtil.dip2px(context, 10);
+            params.leftMargin = imageTextMargin;
+            if (i == actionMap.size()) {
+                params.rightMargin = imageTextMargin;
+            }
             imageText.setText(entry.getValue());
             imageText.setTextColor(textColor);
             imageText.setTextSize(textSize);
@@ -119,6 +119,12 @@ public class SharePopupController {
 
             linearLayout.addView(imageText, params);
         }
+
+        TextView tvTitle = (TextView) popuView.findViewById(R.id.share_title);
+        if (isShowTitle) {
+            tvTitle.setText(title);
+            tvTitle.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -136,7 +142,7 @@ public class SharePopupController {
      */
     public void setBackgroundLevel(float level) {
         window = ((Activity) context).getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         WindowManager.LayoutParams params = window.getAttributes();
         params.alpha = level;
         window.setAttributes(params);
@@ -166,7 +172,6 @@ public class SharePopupController {
 
     public static class PopupParams {
         public Context context;
-        public Boolean isShowTitle = true;
         public float bgLevel = 0.6f;
         public boolean isTouchable = true;
         public String title;
@@ -184,9 +189,9 @@ public class SharePopupController {
 
             controller.installContent();
             controller.setActionClickListener(clickListener);
-            controller.addAction(actionMap, imageSize, textSize, textColor, title, isShowTitle, false, controlMap.size() > 0);
+            controller.addAction(actionMap, imageSize, textSize, textColor, title, false, controlMap.size() > 0);
             if (controlMap.size() > 0) {
-                controller.addAction(controlMap, imageSize, textSize, textColor, title, isShowTitle, true, true);
+                controller.addAction(controlMap, imageSize, textSize, textColor, title, true, true);
             }
 
             controller.setSize();

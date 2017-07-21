@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("标题")
                 .addAction("照片")
                 .addAction("相机")
+                .addConfirmAction("退出")
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
@@ -154,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
                             case 2:
                                 Toast.makeText(context, "点击了相机", Toast.LENGTH_SHORT).show();
                                 break;
+                            case 3:
+                                Toast.makeText(context, "点击了退出", Toast.LENGTH_SHORT).show();
+                                break;
                         }
                     }
                 })
@@ -167,7 +171,24 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("标题")
                 .addAction("照片")
                 .addAction("相机")
-                .addConfirmAction("退出")
+                .addAction("照片1")
+                .addAction("相机1")
+                .addAction("照片2")
+                .addAction("相机2")
+                .addAction("照片3")
+                .addAction("相机3")
+                .addAction("照片4")
+                .addAction("相机4")
+                .addAction("照片5")
+                .addAction("相机5")
+                .addAction("照片6")
+                .addAction("相机6")
+                .addAction("照片7")
+                .addAction("相机7")
+                .addAction("照片8")
+                .addAction("相机8")
+                .addAction("照片9")
+                .addAction("相机9")
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
@@ -180,9 +201,6 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case 2:
                                 Toast.makeText(context, "点击了相机", Toast.LENGTH_SHORT).show();
-                                break;
-                            case 3:
-                                Toast.makeText(context, "点击了退出", Toast.LENGTH_SHORT).show();
                                 break;
                         }
                     }

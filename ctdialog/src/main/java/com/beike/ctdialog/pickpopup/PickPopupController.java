@@ -33,7 +33,6 @@ public class PickPopupController {
     private Window window;
     private IActionClickListener clickListener;
     private LinearLayout linearLayout;
-    private Boolean isShowTitle = false;
 
     public PickPopupController(Context context, PopupWindow popupWindow) {
         this.context = context;
@@ -60,6 +59,8 @@ public class PickPopupController {
     }
 
     public void addAction(LinkedHashMap<String, Boolean> actionMap, String title) {
+        Boolean isShowTitle = false;
+
         if (linearLayout == null) {
             linearLayout = (LinearLayout) popuView.findViewById(R.id.linear_add_area);
         }

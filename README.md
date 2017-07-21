@@ -78,14 +78,14 @@ loadingDialog.setCancelDialogListener(new ICancelDialogListener() { //监听加�
 //CTLoadingDialog 用法同上
 ```
 
-### iOS风格选择框
+### iOS风格选择框, 可无限add..
 
 ```java
 new CTPickPopup.Builder(context)
-                .setTitle("标题")
+                .setTitle("标题") //可选, 默认不显示标题
                 .addAction("照片")
                 .addAction("相机")
-                .addConfirmAction("退出") //字体红色, 起到提醒确认作用
+                .addConfirmAction("退出") //addConfirmAction为红色字体, 起到提醒确认作用
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
@@ -112,7 +112,7 @@ new CTPickPopup.Builder(context)
 ### iOS风格, 分享,选择等多功能操作框
 
 ```java
-new CTSharePopup.Builder(context) // addShare表示上半部分, addControl表示下半部分, 均可无限添加
+new CTSharePopup.Builder(context) // addShare表示上半部分, addControl表示下半部分, 均可无限add..
                 .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_friend), "微信好友") //参数分别对应 要显示的图标和文字, 文字可不传, 只显示图片
                 .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_timeline), "朋友圈")
                 .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_dd), "钉钉")

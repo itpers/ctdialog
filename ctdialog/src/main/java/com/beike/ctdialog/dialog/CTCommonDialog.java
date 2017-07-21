@@ -108,20 +108,20 @@ public class CTCommonDialog extends AlertDialog{
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dismiss();
                 if (commonListener != null) {
                     commonListener.onCancel();
                 }
-                dismiss();
             }
         });
 
         tvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dismiss();
                 if (commonListener != null) {
                     commonListener.onConfirm();
                 }
-                dismiss();
             }
         });
     }

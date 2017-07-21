@@ -106,20 +106,20 @@ public class CTInputDialog extends AlertDialog{
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dismiss();
                 if (inputListener != null) {
                     inputListener.onCancel();
                 }
-                dismiss();
             }
         });
 
         tvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dismiss();
                 if (inputListener != null) {
                     inputListener.onConfirm(getInput());
                 }
-                dismiss();
             }
         });
 

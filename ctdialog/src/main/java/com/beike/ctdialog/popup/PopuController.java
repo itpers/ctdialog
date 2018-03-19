@@ -109,8 +109,8 @@ public class PopuController {
         public int layoutRId;
         public Context context;
         public int width, height;
-        public boolean isShowBg, isShowAnim;
-        public float bgLevel;
+        public boolean isShowBg = true, isShowAnim;
+        public float bgLevel = 0.6f;
         public int animationStyle;
         public View view;
         public boolean isTouchable = true;

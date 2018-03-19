@@ -7,7 +7,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.beike.ctdialog.dialog.CTCheckBoxDialog;
 import com.beike.ctdialog.dialog.CTCommonDialog;
+import com.beike.ctdialog.iterface.IDialogCheckboxListener;
 import com.beike.ctdialog.loading.CTIOSLoadingDialog;
 import com.beike.ctdialog.dialog.CTInputDialog;
 import com.beike.ctdialog.loading.CTLoadingDialog;
@@ -32,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_common_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCommonDilaog();
+//                showCommonDilaog();
+                showCheckboxDilaog();
             }
         });
 
@@ -70,6 +73,22 @@ public class MainActivity extends AppCompatActivity {
                 showProgressDialog();
             }
         });
+    }
+
+
+    public void showCheckboxDilaog() {
+        CTCheckBoxDialog commonDialog = new CTCheckBoxDialog(context, "测试测试测试测", true, new IDialogCheckboxListener() {
+            @Override
+            public void onConfirm(boolean isChecked) {
+                Toast.makeText(context, "r: " + isChecked, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(boolean isChecked) {
+
+            }
+        });
+        commonDialog.show();
     }
 
 

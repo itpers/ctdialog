@@ -40,13 +40,15 @@
                 android:padding="10dp"
                 android:text="标题"
                 android:textColor="@color/ct_progress_bar_color"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:visibility="invisible"/>
 
             <View
                 android:id="@+id/line_title"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ct_line_dimen"
-                android:background="@color/ct_line_color_1" />
+                android:background="@color/ct_line_color_1"
+                android:visibility="invisible"/>
 
             <!--<TextView-->
             <!--android:id="@+id/tv_negative"-->

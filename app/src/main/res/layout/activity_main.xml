@@ -14,10 +14,22 @@
         android:text="普通弹窗"/>
 
     <Button
+        android:id="@+id/bt_checkbox_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择弹窗"/>
+
+    <Button
         android:id="@+id/bt_input_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="输入框弹窗"/>
+
+    <Button
+        android:id="@+id/bt_vertical_bt_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="垂直按钮框弹窗"/>
 
     <Button
         android:id="@+id/bt_pick_dialog"

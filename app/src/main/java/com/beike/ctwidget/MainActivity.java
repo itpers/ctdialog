@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
 import com.beike.ctdialog.dialog.CTCommonDialog;
+import com.beike.ctdialog.dialog.CTVerticalDialog;
 import com.beike.ctdialog.iterface.IDialogCheckboxListener;
+import com.beike.ctdialog.iterface.IDialogVerticalListener;
 import com.beike.ctdialog.loading.CTIOSLoadingDialog;
 import com.beike.ctdialog.dialog.CTInputDialog;
 import com.beike.ctdialog.loading.CTLoadingDialog;
@@ -34,7 +36,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_common_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                showCommonDilaog();
+                showCommonDilaog();
+            }
+        });
+
+        findViewById(R.id.bt_checkbox_dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 showCheckboxDilaog();
             }
         });
@@ -43,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showInputDialog();
+            }
+        });
+
+        findViewById(R.id.bt_vertical_bt_dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showVerticalDilaog();
             }
         });
 
@@ -119,6 +134,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         inputDialog.show();
+    }
+    public void showVerticalDilaog() {
+        CTVerticalDialog verticalDialog = new CTVerticalDialog(context, "您对曲奇云盘提供的服务还满意吗？", null, "不是很满意", "非常满意", "非常满意，鼓励一下", new IDialogVerticalListener() {
+            @Override
+            public void onTop() {
+                Toast.makeText(context, "top", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onMiddle() {
+                Toast.makeText(context, "middle", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onBottom() {
+                Toast.makeText(context, "bottom", Toast.LENGTH_SHORT).show();
+            }
+        });
+        verticalDialog.show();
     }
 
     public void showLoadingDilalog() {

@@ -51,37 +51,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/relative_top_area"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_cancel"
-            android:layout_width="0dp"
+            android:id="@+id/tv_top"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_shape_dialog_left_bottom"
-            android:gravity="center"
-            android:text="@string/ct_dialog_cancel"
+            android:background="@drawable/selector_shape_dialog_middle"
             android:textColor="@color/ct_colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:gravity="center"
+            android:textSize="16sp"/>
 
         <View
             android:id="@+id/line1"
-            android:layout_width="@dimen/ct_line_dimen"
-            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ct_line_dimen"
             android:background="@color/ct_line_color" />
 
         <TextView
-            android:id="@+id/tv_confirm"
-            android:layout_width="0dp"
+            android:id="@+id/tv_middle"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_shape_dialog_right_bottom"
-            android:gravity="center"
-            android:text="@string/ct_dialog_confirm"
+            android:background="@drawable/selector_shape_dialog_middle"
             android:textColor="@color/ct_colorPrimary"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ct_line_dimen"
+            android:background="@color/ct_line_color" />
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/selector_shape_dialog_bottom_half"
+            android:textColor="@color/ct_colorPrimary"
+            android:gravity="center"
+            android:text="@string/ct_dialog_cancel"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

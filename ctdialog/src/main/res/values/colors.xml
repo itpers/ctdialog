@@ -13,4 +13,5 @@
     <color name="ct_black">#333333</color>
     <!-- A light Holo shade of red -->
     <color name="ct_red">#ffff4444</color>
+
 </resources>

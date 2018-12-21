@@ -1,6 +1,7 @@
 package com.beike.ctwidget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,12 +13,15 @@ import com.beike.ctdialog.dialog.CTCommonDialog;
 import com.beike.ctdialog.dialog.CTVerticalDialog;
 import com.beike.ctdialog.iterface.IDialogCheckboxListener;
 import com.beike.ctdialog.iterface.IDialogVerticalListener;
+import com.beike.ctdialog.iterface.IItemClickListener;
 import com.beike.ctdialog.loading.CTIOSLoadingDialog;
 import com.beike.ctdialog.dialog.CTInputDialog;
 import com.beike.ctdialog.loading.CTLoadingDialog;
+import com.beike.ctdialog.pickpopup.CTPickPopup;
+import com.beike.ctdialog.popMenu.PopMenu;
+import com.beike.ctdialog.popMenu.PopMenuItem;
 import com.beike.ctdialog.progress.CTProgressDialog;
 import com.beike.ctdialog.iterface.IDialogInputListener;
-import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.iterface.IActionClickListener;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.iterface.IDialogCommonListener;
@@ -86,6 +90,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showProgressDialog();
+            }
+        });
+
+        findViewById(R.id.popup).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup(v);
+            }
+        });
+
+        findViewById(R.id.popup1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup(view);
+            }
+        });
+
+        findViewById(R.id.popup2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup(view);
             }
         });
     }
@@ -187,6 +212,27 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void popup(View target) {
+
+        new PopMenu(context)
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
+                .setShowLine(true)
+                .installContent()
+                .setTargetView(target)
+                .setBubbleColor(Color.BLACK)
+                .setTransParentBackground()
+                .setItemClickListener(new IItemClickListener() {
+                    @Override
+                    public void onClick(int buttonIndex) {
+                        Toast.makeText(context, "点击了: " + buttonIndex, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
+    }
+
     public void showPickPopup() {
 
         new CTPickPopup.Builder(context)
@@ -265,10 +311,10 @@ public class MainActivity extends AppCompatActivity {
     public void showShare() {
 
         new CTSharePopup.Builder(context)
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_friend), "微信好友")
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_timeline), "朋友圈")
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_dd), "钉钉")
-                .addControl(context.getResources().getDrawable(R.mipmap.ic_web_control_refresh), "刷新")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_friend), "微信好友")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_timeline), "朋友圈")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_dd), "钉钉")
+                .addControl(context.getResources().getDrawable(R.drawable.ic_web_control_refresh), "刷新")
                 .setTitle(R.string.ct_dialog_title)
                 .setActionClickListener(new IActionClickListener() {
                     @Override
@@ -300,9 +346,9 @@ public class MainActivity extends AppCompatActivity {
     public void showShare1() {
 
         new CTSharePopup.Builder(context)
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_friend), "微信好友")
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_timeline), "朋友圈")
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_dd), "钉钉")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_friend), "微信好友")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_timeline), "朋友圈")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_dd), "钉钉")
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
@@ -333,9 +379,9 @@ public class MainActivity extends AppCompatActivity {
     public void showShare2() {
 
         new CTSharePopup.Builder(context)
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_friend), "微信好友")
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_wx_timeline), "朋友圈")
-                .addShare(context.getResources().getDrawable(R.mipmap.ic_share_to_dd), "钉钉")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_friend), "微信好友")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_timeline), "朋友圈")
+                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_dd), "钉钉")
                 .setTitle("分享到:")
                 .setActionClickListener(new IActionClickListener() {
                     @Override

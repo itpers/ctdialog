@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "27.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
     }
     buildTypes {
@@ -41,6 +40,8 @@ makeJar.dependsOn(clearJar, build)
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:25.4.0'
-    implementation 'com.android.support:recyclerview-v7:25.4.0'
+    compileOnly "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+    compileOnly "com.android.support:design:${rootProject.ext.supportVersion}"
+
+    api 'com.github.xujiaji:happy-bubble:1.1.6'
 }

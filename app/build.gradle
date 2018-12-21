@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "27.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.beike.ctwidget"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -21,5 +20,6 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api project(':ctdialog')
-    implementation 'com.android.support:appcompat-v7:25.4.0'
+    api "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+    api "com.android.support:design:${rootProject.ext.supportVersion}"
 }

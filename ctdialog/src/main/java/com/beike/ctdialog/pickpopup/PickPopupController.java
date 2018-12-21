@@ -151,7 +151,7 @@ public class PickPopupController {
     public void addLineView() {
         View lineView = new View(context);
         LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, context.getResources().getDimensionPixelSize(R.dimen.ct_line_dimen));
-        lineView.setBackgroundColor(context.getResources().getColor(R.color.ct_line_color_1));
+        lineView.setBackgroundColor(context.getResources().getColor(R.color.ct_gray));
         linearLayout.addView(lineView, lineParams);
     }
 

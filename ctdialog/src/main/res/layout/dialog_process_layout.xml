@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/shape_procress_dialog_bg"
-    android:gravity="center"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp" >
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_loading_dialog_bg"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/iv_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="30dp"
-        android:minHeight="30dp"
-        android:src="@drawable/ic_loading"/>
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_loading_1" />
 
     <TextView
         android:id="@+id/tv_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/iv_loading"
-        android:text="@string/ct_dialog_process_tip"
-        android:textColor="@color/ct_black"
-        android:textSize="15sp" />
+        android:layout_below="@id/iv_loading"
+        android:layout_centerHorizontal="true"
+        android:text="加载中..."
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
 </RelativeLayout>

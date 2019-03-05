@@ -1,6 +1,7 @@
 package com.beike.ctdialog.dialog;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -121,6 +122,15 @@ public class CTCommonDialog extends AlertDialog{
                 dismiss();
                 if (commonListener != null) {
                     commonListener.onConfirm();
+                }
+            }
+        });
+
+        this.setOnCancelListener(new OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                if (commonListener != null) {
+                    commonListener.onCancel();
                 }
             }
         });

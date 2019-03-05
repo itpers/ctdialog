@@ -11,6 +11,7 @@
     <color name="ct_gray">#FF787878</color>
     <color name="ct_gray_1">#FF5E5E5E</color>
     <color name="ct_black">#333333</color>
+    <color name="ct_black_0">#000000</color>
     <!-- A light Holo shade of red -->
     <color name="ct_red">#ffff4444</color>
 

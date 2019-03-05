@@ -50,7 +50,6 @@ public class CTSharePopup extends PopupWindow {
         }
 
         public Builder setTitle(@StringRes int titleRid) {
-            if (titleRid <= 0) return this;
             params.title = params.context.getText(titleRid).toString();
             return this;
         }

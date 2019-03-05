@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -57,8 +58,9 @@ public class CTLoadingDialog extends AlertDialog {
         setContentView(R.layout.dialog_process_layout);
 
         WindowManager.LayoutParams p = getWindow().getAttributes();
-        p.dimAmount = 0.4f;
-        p.width = DensityUtil.dip2px(context, 240);
+        p.dimAmount = 0.0f;
+        p.width = DensityUtil.dip2px(context, 100);
+        p.height = DensityUtil.dip2px(context, 100);
         getWindow().setBackgroundDrawableResource(R.color.transparent);
         getWindow().setAttributes(p);
 
@@ -73,11 +75,16 @@ public class CTLoadingDialog extends AlertDialog {
 
     /**
      * 设置内容
+     *
      * @param message 内容
      */
     public void setMessage(String message) {
-        if (tvMessage != null && !TextUtils.isEmpty(message)) {
+        if (tvMessage == null) return;
+        if (!TextUtils.isEmpty(message)) {
             tvMessage.setText(message);
+            tvMessage.setVisibility(View.VISIBLE);
+        } else {
+            tvMessage.setVisibility(View.GONE);
         }
     }
 

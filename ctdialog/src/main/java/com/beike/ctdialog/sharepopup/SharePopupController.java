@@ -90,15 +90,24 @@ public class SharePopupController {
 //            }
         }
 
-        int imageTextMargin = DensityUtil.dip2px(context, 12);
+        int firstMargin = DensityUtil.dip2px(context, 12);
+        int margin = DensityUtil.dip2px(context, 10);
         int i = 0;
         for (Map.Entry<Drawable, String> entry : actionMap.entrySet()) {
             index++;
             i++;
             ImageText imageText = new ImageText(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.leftMargin = imageTextMargin;
-            params.rightMargin = imageTextMargin;
+            if (i == 0) {
+                params.leftMargin = firstMargin;
+                params.rightMargin = margin;
+            } else if (i == actionMap.size() - 1) {
+                params.leftMargin = margin;
+                params.rightMargin = firstMargin;
+            } else {
+                params.leftMargin = margin;
+                params.rightMargin = margin;
+            }
 
             imageText.setText(entry.getValue());
             imageText.setTextColor(textColor);

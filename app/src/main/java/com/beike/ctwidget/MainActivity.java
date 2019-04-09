@@ -11,11 +11,11 @@ import android.widget.Toast;
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
 import com.beike.ctdialog.dialog.CTCommonDialog;
 import com.beike.ctdialog.dialog.CTVerticalDialog;
+import com.beike.ctdialog.dialog.inputDialog.CTInputDialog;
 import com.beike.ctdialog.iterface.IDialogCheckboxListener;
 import com.beike.ctdialog.iterface.IDialogVerticalListener;
 import com.beike.ctdialog.iterface.IItemClickListener;
 import com.beike.ctdialog.loading.CTIOSLoadingDialog;
-import com.beike.ctdialog.dialog.CTInputDialog;
 import com.beike.ctdialog.loading.CTLoadingDialog;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.popMenu.PopMenu;
@@ -147,18 +147,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showInputDialog() {
-        CTInputDialog inputDialog = new CTInputDialog(context,"新建文档", "请输入名字", new IDialogInputListener() {
-            @Override
-            public void onConfirm(String input) {
-                Toast.makeText(context, input+"", Toast.LENGTH_SHORT).show();
-            }
+        new CTInputDialog.Builder(context)
+                .setTitle("重命名")
+                .setInputDefault("原名字")
+                .setInputHint("请输入新名称")
+                .setInputDialogListener(new IDialogInputListener() {
+                    @Override
+                    public void onConfirm(String input) {
+                        Toast.makeText(context, input+"", Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onCancel() {
+                    @Override
+                    public void onCancel() {
 
-            }
-        });
-        inputDialog.show();
+                    }
+                }).create();
     }
     public void showVerticalDilaog() {
         CTVerticalDialog verticalDialog = new CTVerticalDialog(context, "您对曲奇云盘提供的服务还满意吗？", null, "不是很满意", "非常满意", "非常满意，鼓励一下", new IDialogVerticalListener() {

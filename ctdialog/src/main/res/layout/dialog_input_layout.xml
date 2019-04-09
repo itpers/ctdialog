@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_title"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/shape_stroke_gray_solid_white"
             android:hint="请输入名字"
             android:maxLines="3"
@@ -78,9 +78,10 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/selector_shape_dialog_right_bottom"
+            android:enabled="false"
             android:gravity="center"
             android:text="@string/ct_dialog_confirm"
-            android:textColor="@color/ct_colorPrimary"
+            android:textColor="@drawable/selector_text_enable"
             android:textSize="16sp"
             android:textStyle="bold" />
 

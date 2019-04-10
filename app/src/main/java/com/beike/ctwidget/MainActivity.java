@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
 import com.beike.ctdialog.dialog.CTCommonDialog;
 import com.beike.ctdialog.dialog.CTVerticalDialog;
-import com.beike.ctdialog.dialog.inputDialog.CTInputDialog;
+import com.beike.ctdialog.dialog.CTInputDialog;
 import com.beike.ctdialog.iterface.IDialogCheckboxListener;
 import com.beike.ctdialog.iterface.IDialogVerticalListener;
 import com.beike.ctdialog.iterface.IItemClickListener;
@@ -117,33 +117,38 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showCheckboxDilaog() {
-        CTCheckBoxDialog commonDialog = new CTCheckBoxDialog(context, "测试测试测试测", true, new IDialogCheckboxListener() {
-            @Override
-            public void onConfirm(boolean isChecked) {
-                Toast.makeText(context, "r: " + isChecked, Toast.LENGTH_SHORT).show();
-            }
+        new CTCheckBoxDialog.Builder(context)
+                .setTitle("测试测试测试")
+                .setMessage("aaaaaaaaaa")
+                .setIsChecked(true)
+                .setDialogListener(new IDialogCheckboxListener() {
+                    @Override
+                    public void onConfirm(boolean isChecked) {
 
-            @Override
-            public void onCancel(boolean isChecked) {
+                    }
 
-            }
-        });
-        commonDialog.show();
+                    @Override
+                    public void onCancel(boolean isChecked) {
+
+                    }
+                }).create();
     }
 
 
     public void showCommonDilaog() {
-        CTCommonDialog commonDialog = new CTCommonDialog(context, "测试测试测试测", new IDialogCommonListener() {
-            @Override
-            public void onConfirm() {
-            }
+        new CTCommonDialog.Builder(context)
+                .setTitle("测试测试测试")
+                .setDialogListener(new IDialogCommonListener() {
+                    @Override
+                    public void onConfirm() {
 
-            @Override
-            public void onCancel() {
+                    }
 
-            }
-        });
-        commonDialog.show();
+                    @Override
+                    public void onCancel() {
+
+                    }
+                }).create();
     }
 
     public void showInputDialog() {
@@ -164,23 +169,26 @@ public class MainActivity extends AppCompatActivity {
                 }).create();
     }
     public void showVerticalDilaog() {
-        CTVerticalDialog verticalDialog = new CTVerticalDialog(context, "您对曲奇云盘提供的服务还满意吗？", null, "不是很满意", "非常满意", "非常满意，鼓励一下", new IDialogVerticalListener() {
-            @Override
-            public void onTop() {
-                Toast.makeText(context, "top", Toast.LENGTH_SHORT).show();
-            }
+        new CTVerticalDialog.Builder(context)
+                .setTitle("您对曲奇云盘提供的服务还满意吗？")
+                .setTop("不是很满意")
+                .setMiddle("非常满意")
+                .setBottom("非常满意，鼓励一下")
+                .setDialogListener(new IDialogVerticalListener() {
+                    @Override
+                    public void onTop() {
+                    }
 
-            @Override
-            public void onMiddle() {
-                Toast.makeText(context, "middle", Toast.LENGTH_SHORT).show();
-            }
+                    @Override
+                    public void onMiddle() {
 
-            @Override
-            public void onBottom() {
-                Toast.makeText(context, "bottom", Toast.LENGTH_SHORT).show();
-            }
-        });
-        verticalDialog.show();
+                    }
+
+                    @Override
+                    public void onBottom() {
+
+                    }
+                }).create();
     }
 
     public void showLoadingDilalog() {

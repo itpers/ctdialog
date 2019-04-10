@@ -1,4 +1,4 @@
-package com.beike.ctdialog.dialog.inputDialog;
+package com.beike.ctdialog.dialog;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -67,11 +67,11 @@ public class CTInputDialog extends AlertDialog {
 
         if (title == null) {
             tvTitle.setVisibility(View.GONE);
-        } else if (!"".equals(title)) {
+        } else {
             tvTitle.setText(title);
         }
 
-        if (!"".equals(inputHint)) {
+        if (inputHint != null) {
             etContent.setHint(inputHint);
         }
 
@@ -184,7 +184,7 @@ public class CTInputDialog extends AlertDialog {
             return this;
         }
 
-        public Builder setShowCancel(boolean showCancel) {
+        public Builder setIsShowCancel(boolean showCancel) {
             this.showCancel = showCancel;
             return this;
         }

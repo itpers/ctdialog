@@ -68,6 +68,10 @@ CTInputDialog 构造函数可接收多个参数 , 默认重载了5个构造函�
     setInputDialogListener: 点击回调
     */
 ```
+![普通弹窗](https://github.com/itpers/ctdialog/blob/master/img/ct_common_dialog.png)
+![带选中弹窗](https://github.com/itpers/ctdialog/blob/master/img/ct_check_dialog.png)
+![输入弹窗](https://github.com/itpers/ctdialog/blob/master/img/ct_input_dialog.png)
+![垂直弹窗](https://github.com/itpers/ctdialog/blob/master/img/ct_vertical_dialog.png)
 
 ### 加载对话框 分两种 一种iOS小菊花风格CTIOSLoadingDialog, 另一种圈圈风格CTLoadingDialog
 
@@ -81,6 +85,9 @@ loadingDialog.setCancelDialogListener(new ICancelDialogListener() { //监听加�
 });
 //CTLoadingDialog 用法同上
 ```
+
+![iOS风格loading](https://github.com/itpers/ctdialog/blob/master/img/ct_ios_loading.png)
+![普通loading](https://github.com/itpers/ctdialog/blob/master/img/ct_common_loading.png)
 
 ### iOS风格选择框, 可无限add..
 
@@ -112,6 +119,8 @@ new CTPickPopup.Builder(context)
                 .create()
                 .showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
 ```
+
+![选择](https://github.com/itpers/ctdialog/blob/master/img/ct_selected_dialog.png)
 
 ### iOS风格, 分享,选择等多功能操作框
 
@@ -148,3 +157,9 @@ new CTSharePopup.Builder(context) // addShare表示上半部分, addControl表�
                 .create()
                 .showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
 ```
+
+![分享弹窗](https://github.com/itpers/ctdialog/blob/master/img/ct_share_popup.png)
+![分享弹窗](https://github.com/itpers/ctdialog/blob/master/img/ct_share_popup1.png)
+
+### 进度条
+![进度条](https://github.com/itpers/ctdialog/blob/master/img/ct_progress_dialog.png)

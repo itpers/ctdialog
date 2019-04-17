@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showVerticalDilaog() {
         new CTVerticalDialog.Builder(context)
-                .setTitle("您对曲奇云盘提供的服务还满意吗？")
+                .setTitle("您对XXX提供的服务还满意吗？")
                 .setTop("不是很满意")
                 .setMiddle("非常满意")
                 .setBottom("非常满意，鼓励一下")

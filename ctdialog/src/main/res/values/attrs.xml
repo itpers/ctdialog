@@ -8,4 +8,15 @@
         <attr name="textSize" format="dimension" />
         <attr name="imageSize" format="dimension" />
     </declare-styleable>
+
+
+    <declare-styleable name="CircleLoadingView">
+        <attr name="max" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="circleColor" format="color|reference" />
+        <attr name="circleProgressColor" format="color|reference" />
+        <attr name="circleWidth" format="dimension" />
+        <attr name="cTextColor" format="color|reference" />
+        <attr name="cTextSize" format="dimension" />
+    </declare-styleable>
 </resources>

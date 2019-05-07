@@ -67,10 +67,12 @@ public class CTIOSLoadingDialog extends AlertDialog {
 
     /**
      * 设置内容
+     *
      * @param message 内容
      */
     public void setMessage(String message) {
-        if (tvMessage != null && !TextUtils.isEmpty(message)) {
+        if (tvMessage == null) return;
+        if (!TextUtils.isEmpty(message)) {
             tvMessage.setText(message);
             tvMessage.setVisibility(View.VISIBLE);
         } else {

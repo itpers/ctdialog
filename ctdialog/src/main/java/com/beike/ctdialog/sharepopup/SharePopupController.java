@@ -72,35 +72,43 @@ public class SharePopupController {
             scrollView.setVisibility(View.VISIBLE);
             popuView.findViewById(R.id.line).setVisibility(View.VISIBLE);
         } else {
-            scrollView = (HorizontalScrollView) popuView.findViewById(R.id.share_scrollview);
+//            scrollView = (HorizontalScrollView) popuView.findViewById(R.id.share_scrollview);
             linearLayout = (LinearLayout) popuView.findViewById(R.id.linear_share);
 
-            if (isShowControl) {
-                if (isShowTitle) {
-                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_middle);
-                } else {
-                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_top_half);
-                }
-            } else {
-                if (isShowTitle) {
-                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
-                } else {
-                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_selector_cancel);
-                }
-            }
+//            if (isShowControl) {
+//                if (isShowTitle) {
+//                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_middle);
+//                } else {
+//                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_top_half);
+//                }
+//            } else {
+//                if (isShowTitle) {
+//                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
+//                } else {
+//                    scrollView.setBackgroundResource(R.drawable.selector_shape_dialog_selector_cancel);
+//                }
+//            }
         }
 
-        int imageTextMargin = DensityUtil.dip2px(context, 10);
+        int firstMargin = DensityUtil.dip2px(context, 12);
+        int margin = DensityUtil.dip2px(context, 10);
         int i = 0;
         for (Map.Entry<Drawable, String> entry : actionMap.entrySet()) {
             index++;
             i++;
             ImageText imageText = new ImageText(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.leftMargin = imageTextMargin;
-            if (i == actionMap.size()) {
-                params.rightMargin = imageTextMargin;
+            if (i == 0) {
+                params.leftMargin = firstMargin;
+                params.rightMargin = margin;
+            } else if (i == actionMap.size() - 1) {
+                params.leftMargin = margin;
+                params.rightMargin = firstMargin;
+            } else {
+                params.leftMargin = margin;
+                params.rightMargin = margin;
             }
+
             imageText.setText(entry.getValue());
             imageText.setTextColor(textColor);
             imageText.setTextSize(textSize);

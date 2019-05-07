@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IDialogCheckboxListener;
-import com.beike.ctdialog.iterface.IDialogCommonListener;
 
 /**
  * Created by liupeng on 2017/6/19.
@@ -34,25 +33,7 @@ public class CTCheckBoxDialog extends AlertDialog{
     private String confirm;
     private boolean isChecked;
 
-    private Context context;
-
     private IDialogCheckboxListener checkboxListener;
-
-    public CTCheckBoxDialog(@NonNull Context context, String message, boolean isChecked, @Nullable IDialogCheckboxListener checkboxListener) {
-        this(context, "", message, "", "", isChecked, true, true, checkboxListener);
-    }
-
-    public CTCheckBoxDialog(@NonNull Context context, String title, String message, boolean isChecked, @Nullable IDialogCheckboxListener checkboxListener) {
-        this(context, title, message, "", "", isChecked, true, true, checkboxListener);
-    }
-
-    public CTCheckBoxDialog(@NonNull Context context, String message, boolean isChecked, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCheckboxListener checkboxListener) {
-        this(context, "", message, "", "", isChecked, cancelable, outsideCancelable, checkboxListener);
-    }
-
-    public CTCheckBoxDialog(@NonNull Context context, String title, String message, boolean isChecked, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCheckboxListener checkboxListener) {
-        this(context, title, message, "", "", isChecked, cancelable, outsideCancelable, checkboxListener);
-    }
 
     public CTCheckBoxDialog(@NonNull Context context, String title, String message, String cancel, String confirm, boolean isChecked, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCheckboxListener checkboxListener) {
         super(context);
@@ -89,24 +70,19 @@ public class CTCheckBoxDialog extends AlertDialog{
 
         if (title == null) {
             tvTitle.setVisibility(View.GONE);
-        } else if (!"".equals(title)){
+        } else {
             tvTitle.setText(title);
         }
 
         if (message == null) {
             tvMessage.setVisibility(View.GONE);
-        } else if (!"".equals(message)){
+        } else {
             tvMessage.setText(message);
         }
 
-        if (cancel == null) {
-            tvCancel.setVisibility(View.GONE);
-            findViewById(R.id.line1).setVisibility(View.GONE);
-            tvConfirm.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
-        } else if (!"".equals(cancel)){
+        if (!TextUtils.isEmpty(cancel)){
             tvCancel.setText(cancel);
         }
-
         if (!TextUtils.isEmpty(confirm)) {
             tvConfirm.setText(confirm);
         }
@@ -144,5 +120,73 @@ public class CTCheckBoxDialog extends AlertDialog{
     public void setMessage(CharSequence message) {
         if (TextUtils.isEmpty(message)) return;
         tvMessage.setText(message);
+    }
+
+    public static class Builder {
+        public Context context;
+        public String title, message, inputDefault;
+        public String confirm, cancel;
+        public boolean isTouchable = false, isChecked = true, cancelable = true;
+        public IDialogCheckboxListener clickListener;
+
+        public Builder(Context context) {
+            this.context = context;
+        }
+
+        public Builder setTitle(String title) {
+            if (TextUtils.isEmpty(title)) return this;
+            this.title = title;
+            return this;
+        }
+
+        public Builder setMessage(String message) {
+            if (TextUtils.isEmpty(message)) return this;
+            this.message = message;
+            return this;
+        }
+
+        public Builder setInputDefault(String inputDefault) {
+            if (TextUtils.isEmpty(inputDefault)) return this;
+            this.inputDefault = inputDefault;
+            return this;
+        }
+
+        public Builder setConfirm(String confirm) {
+            if (TextUtils.isEmpty(confirm)) return this;
+            this.confirm = confirm;
+            return this;
+        }
+
+        public Builder setCancel(String cancel) {
+            if (TextUtils.isEmpty(cancel)) return this;
+            this.cancel = cancel;
+            return this;
+        }
+
+        public Builder setIsChecked(boolean isChecked) {
+            this.isChecked = isChecked;
+            return this;
+        }
+
+        public Builder setIsCancelable(boolean cancelable) {
+            this.cancelable = cancelable;
+            return this;
+        }
+
+        public Builder setOutsideTouchable(boolean touchable) {
+            this.isTouchable = touchable;
+            return this;
+        }
+
+        public Builder setDialogListener(IDialogCheckboxListener clickListener) {
+            this.clickListener = clickListener;
+            return this;
+        }
+
+        public CTCheckBoxDialog create() {
+            CTCheckBoxDialog dialog = new CTCheckBoxDialog(context, title, message, cancel, confirm, isChecked, cancelable, isTouchable, clickListener);
+            dialog.show();
+            return dialog;
+        }
     }
 }

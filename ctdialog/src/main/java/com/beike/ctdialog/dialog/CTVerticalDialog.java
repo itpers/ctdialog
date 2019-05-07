@@ -28,29 +28,7 @@ public class CTVerticalDialog extends AlertDialog{
     private String message;
     private String top, middle, bottom;
 
-    private Context context;
-
     private IDialogVerticalListener verticalListener;
-
-    public CTVerticalDialog(@NonNull Context context, String message, @Nullable IDialogVerticalListener verticalListener) {
-        this(context, "", message, "", "", "", true, true, verticalListener);
-    }
-
-    public CTVerticalDialog(@NonNull Context context, String title, String message, String top, String middle, String bottom, @Nullable IDialogVerticalListener verticalListener) {
-        this(context, title, message, top, middle, bottom, true, true, verticalListener);
-    }
-
-    public CTVerticalDialog(@NonNull Context context, String message, boolean cancelable, boolean outsideCancelable, @Nullable IDialogVerticalListener verticalListener) {
-        this(context, "", message, "", "", "", cancelable, outsideCancelable, verticalListener);
-    }
-
-    public CTVerticalDialog(@NonNull Context context, String title, String message, @Nullable IDialogVerticalListener verticalListener) {
-        this(context, title, message, "", "", "", true, true, verticalListener);
-    }
-
-    public CTVerticalDialog(@NonNull Context context, String title, String message, boolean cancelable, boolean outsideCancelable, @Nullable IDialogVerticalListener verticalListener) {
-        this(context, title, message, "", "", "", cancelable, outsideCancelable, verticalListener);
-    }
 
     public CTVerticalDialog(@NonNull Context context, String title, String message, String top, String middle, String bottom, boolean cancelable, boolean outsideCancelable, @Nullable IDialogVerticalListener verticalListener) {
         super(context);
@@ -87,13 +65,13 @@ public class CTVerticalDialog extends AlertDialog{
 
         if (title == null) {
             tvTitle.setVisibility(View.GONE);
-        } else if (!"".equals(title)){
+        } else {
             tvTitle.setText(title);
         }
 
         if (message == null) {
             tvMessage.setVisibility(View.GONE);
-        } else if (!"".equals(message)){
+        } else {
             tvMessage.setText(message);
         }
 
@@ -104,7 +82,7 @@ public class CTVerticalDialog extends AlertDialog{
         if (middle == null) {
             tvMiddle.setVisibility(View.GONE);
             findViewById(R.id.line1).setVisibility(View.GONE);
-        } else if (!"".equals(middle)){
+        } else {
             tvMiddle.setText(middle);
         }
 
@@ -153,5 +131,77 @@ public class CTVerticalDialog extends AlertDialog{
     public void setMessage(CharSequence message) {
         if (TextUtils.isEmpty(message)) return;
         tvMessage.setText(message);
+    }
+
+    public static class Builder {
+        public Context context;
+        public String title, message;
+        public String top, middle, bottom;
+        public boolean isTouchable = false, cancelable = true;
+        public IDialogVerticalListener clickListener;
+
+        public Builder(Context context) {
+            this.context = context;
+        }
+
+        public Builder setTitle(String title) {
+            if (TextUtils.isEmpty(title)) return this;
+            this.title = title;
+            return this;
+        }
+
+        public Builder setMessage(String message) {
+            if (TextUtils.isEmpty(message)) return this;
+            this.message = message;
+            return this;
+        }
+
+        public Builder setConfirm(String confirm) {
+            if (TextUtils.isEmpty(confirm)) return this;
+            this.top = confirm;
+            return this;
+        }
+
+        public Builder setCancel(String cancel) {
+            if (TextUtils.isEmpty(cancel)) return this;
+            this.bottom = cancel;
+            return this;
+        }
+
+        public Builder setTop(String top) {
+            this.top = top;
+            return this;
+        }
+
+        public Builder setMiddle(String middle) {
+            this.middle = middle;
+            return this;
+        }
+
+        public Builder setBottom(String bottom) {
+            this.bottom = bottom;
+            return this;
+        }
+
+        public Builder setIsCancelable(boolean cancelable) {
+            this.cancelable = cancelable;
+            return this;
+        }
+
+        public Builder setOutsideTouchable(boolean touchable) {
+            this.isTouchable = touchable;
+            return this;
+        }
+
+        public Builder setDialogListener(IDialogVerticalListener clickListener) {
+            this.clickListener = clickListener;
+            return this;
+        }
+
+        public CTVerticalDialog create() {
+            final CTVerticalDialog dialog = new CTVerticalDialog(context, title, message, top, middle, bottom, cancelable, isTouchable, clickListener);
+            dialog.show();
+            return dialog;
+        }
     }
 }

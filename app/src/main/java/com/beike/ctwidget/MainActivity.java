@@ -215,10 +215,10 @@ public class MainActivity extends AppCompatActivity {
     public void popup(View target) {
 
         new PopMenu(context)
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测试测"))
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试试测"))
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测测"))
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测"))
+                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测测"))
                 .setShowLine(true)
                 .installContent()
                 .setTargetView(target)

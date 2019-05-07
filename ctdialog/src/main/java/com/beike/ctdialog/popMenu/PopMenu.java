@@ -1,7 +1,8 @@
 package com.beike.ctdialog.popMenu;
 
 import android.content.Context;
-import android.util.Log;
+import android.graphics.Paint;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IItemClickListener;
+import com.beike.ctdialog.utils.DensityUtil;
 import com.xujiaji.happybubble.BubbleDialog;
 import com.xujiaji.happybubble.BubbleLayout;
 
@@ -20,6 +22,13 @@ import java.util.List;
  */
 
 public class PopMenu {
+
+    private static int DEFAULT_ITEM_ICON_SIZE = 26; // dp
+    private static int DEFAULT_ITEM_TEXT_SIZE = 18; // sp
+    private static int DEFAULT_ITEM_PADDING_SIZE = 10; // dp
+    private static int DEFAULT_ITEM_ICON_TEXT_MARGIN_SIZE = 5; //dp
+    private static int DEFAULT_PADDING = 20; // dp
+
     private Context context;
     private BubbleDialog bubbleDialog;
     private BubbleLayout bubbleLayout;
@@ -27,13 +36,18 @@ public class PopMenu {
     private List<PopMenuItem> items;
     private IItemClickListener clickListener;
     private boolean isShowLine;
+    private int itemIconSize = DEFAULT_ITEM_ICON_SIZE;
+    private int itemTitleSize = DEFAULT_ITEM_TEXT_SIZE;
+    private int itemPaddingSize = DEFAULT_ITEM_PADDING_SIZE;
+    private int popPading = DEFAULT_PADDING;
+
 
     public PopMenu(Context context) {
         this.context = context;
 
         bubbleLayout = new BubbleLayout(context);
-        bubbleLayout.setPadding(0, 0, 0, 0);
-        bubbleLayout.setPaddingRelative(0, 0, 0, 0);
+
+        popPading += bubbleLayout.getShadowRadius() * 2;
 
         this.bubbleDialog = new BubbleDialog(context)
                         .calBar(true)
@@ -89,7 +103,38 @@ public class PopMenu {
 
     }
 
+    /**
+     * 设置 item 图标打下
+     * @param iconSize 默认单位 dp
+     * @return
+     */
+    public PopMenu setItemIconSize(int iconSize) {
+        itemIconSize = iconSize;
+        return this;
+    }
+
+    /**
+     * 设置 item 文字大小
+     * @param textSize 默认单位 sp
+     * @return
+     */
+    public PopMenu setItemTextSize(int textSize) {
+        itemTitleSize = textSize;
+        return this;
+    }
+
+    /**
+     * 设置 item 内边距大小
+     * @param paddingSize 默认单位 dp
+     * @return
+     */
+    public PopMenu setItemPaddingSize(int paddingSize) {
+        itemPaddingSize = paddingSize;
+        return this;
+    }
+
     public PopMenu installContent() {
+        String maxText = "";
         if (items == null) {
             bubbleDialog.addContentView(popuView);
             return this;
@@ -106,14 +151,31 @@ public class PopMenu {
                     }
                 }
             });
+            String itemText = item.getTitle().getText().toString();
+            if (!TextUtils.isEmpty(itemText) && itemText.length() > maxText.length()) {
+                maxText = itemText;
+            }
             popuView.addView(item);
             if (isShowLine && i < items.size() - 1) {
-                item.findViewById(R.id.line).setVisibility(View.VISIBLE);
-//                addLineView();
+                addLineView();
             }
         }
         bubbleDialog.addContentView(popuView);
+
+        int popWidth = getPopWidth(maxText);
+        bubbleDialog.setLayout(popWidth, ViewGroup.LayoutParams.WRAP_CONTENT, 0);
         return this;
+    }
+
+    public int getPopWidth(String maxText) {
+        int textPxSize = DensityUtil.sp2px(context, itemTitleSize);
+        int otherPxWidth = DensityUtil.dip2px(context, itemIconSize + itemPaddingSize * 2 + DEFAULT_ITEM_ICON_TEXT_MARGIN_SIZE + popPading);
+
+        Paint paint = new Paint();
+        paint.setTextSize(textPxSize);
+        int titleWidth = (int) paint.measureText(maxText);
+
+        return otherPxWidth + titleWidth;
     }
 
     /**

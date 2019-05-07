@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/ll_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
 
@@ -28,15 +28,5 @@
             android:textSize="18sp" />
 
     </LinearLayout>
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/ct_line_dimen"
-        android:layout_below="@id/ll_content"
-        android:layout_alignLeft="@id/ll_content"
-        android:layout_alignRight="@id/ll_content"
-        android:background="@color/ct_line_color"
-        android:visibility="gone"/>
 
 </RelativeLayout>

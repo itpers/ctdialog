@@ -19,6 +19,7 @@ import com.beike.ctdialog.iterface.IDialogVerticalListener;
 import com.beike.ctdialog.iterface.IItemClickListener;
 import com.beike.ctdialog.loading.CTIOSLoadingDialog;
 import com.beike.ctdialog.loading.CTLoadingDialog;
+import com.beike.ctdialog.pageLoading.CTPageLoading;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.popMenu.PopMenu;
 import com.beike.ctdialog.popMenu.PopMenuItem;
@@ -72,8 +73,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_pick_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                showPickPopup();
-                popup(v);
+                showPickPopup();
+            }
+        });
+
+        findViewById(R.id.bt_page_loading).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPageLoading();
             }
         });
 
@@ -194,6 +201,11 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }).create();
+    }
+
+    public void showPageLoading() {
+        CTPageLoading pageLoading = new CTPageLoading.Builder(context).build();
+        pageLoading.show();
     }
 
     public void showLoadingDilalog() {

@@ -52,6 +52,12 @@
             android:text="加载框" />
 
         <Button
+            android:id="@+id/bt_page_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="页面loading" />
+
+        <Button
             android:id="@+id/bt_progress_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

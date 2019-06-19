@@ -20,7 +20,7 @@ import com.beike.ctdialog.utils.DensityUtil;
  * 自定义加载对话框
  * Created by liupeng on 2017/5/19.
  */
-public class CTLoadingDialog extends AlertDialog {
+public class CTLoading extends AlertDialog {
 
     private Context context = null;
 
@@ -32,17 +32,17 @@ public class CTLoadingDialog extends AlertDialog {
     private ICancelDialogListener cancelDialogListener;
 
 
-    public CTLoadingDialog(@Nullable Context context) {
+    public CTLoading(@Nullable Context context) {
         this(context, null, true, false, null);
     }
 
 
-    public CTLoadingDialog(@Nullable Context context, String message) {
+    public CTLoading(@Nullable Context context, String message) {
         this(context, message, true, false, null);
     }
 
 
-    public CTLoadingDialog(@Nullable Context context, String message, boolean cancelable, boolean outsideCancelable, ICancelDialogListener cancelDialogListener) {
+    public CTLoading(@Nullable Context context, String message, boolean cancelable, boolean outsideCancelable, ICancelDialogListener cancelDialogListener) {
         super(context);
         this.context = context;
         this.message = message;

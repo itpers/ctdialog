@@ -4,10 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
@@ -17,11 +14,10 @@ import com.beike.ctdialog.dialog.CTInputDialog;
 import com.beike.ctdialog.iterface.IDialogCheckboxListener;
 import com.beike.ctdialog.iterface.IDialogVerticalListener;
 import com.beike.ctdialog.iterface.IItemClickListener;
-import com.beike.ctdialog.loading.CTIOSLoadingDialog;
-import com.beike.ctdialog.loading.CTLoadingDialog;
+import com.beike.ctdialog.loading.CTIOSLoading;
+import com.beike.ctdialog.loading.CTLoading;
 import com.beike.ctdialog.pageLoading.CTPageLoading;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
-import com.beike.ctdialog.popMenu.PopMenu;
 import com.beike.ctdialog.popMenu.PopMenuItem;
 import com.beike.ctdialog.popupMenue.CTPopupMenu;
 import com.beike.ctdialog.progress.CTProgressDialog;
@@ -30,7 +26,6 @@ import com.beike.ctdialog.iterface.IActionClickListener;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.iterface.IDialogCommonListener;
 import com.beike.ctdialog.sharepopup.CTSharePopup;
-import com.beike.ctdialog.utils.DensityUtil;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
@@ -204,23 +199,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showPageLoading() {
-        CTPageLoading pageLoading = new CTPageLoading.Builder(context).build();
+        CTPageLoading pageLoading = new CTPageLoading
+                .Builder(context)
+                .isShowMessage(false)
+                .build();
         pageLoading.show();
     }
 
     public void showLoadingDilalog() {
-        CTIOSLoadingDialog loadingDialog = new CTIOSLoadingDialog(context);
+        CTIOSLoading loadingDialog = new CTIOSLoading
+                .Builder(context)
+                .isShowMessage(false)
+                .setCancelDialogListener(new ICancelDialogListener() {
+                    @Override
+                    public void cancel() {
+                        showLoadingDilalog1();
+                    }
+                })
+                .build();
         loadingDialog.show();
-        loadingDialog.setCancelDialogListener(new ICancelDialogListener() {
-            @Override
-            public void cancel() {
-                showLoadingDilalog1();
-            }
-        });
     }
 
     public void showLoadingDilalog1() {
-        CTLoadingDialog processDialog = new CTLoadingDialog(context);
+        CTLoading processDialog = new CTLoading(context);
         processDialog.show();
         processDialog.setCancelDialogListener(new ICancelDialogListener() {
             @Override

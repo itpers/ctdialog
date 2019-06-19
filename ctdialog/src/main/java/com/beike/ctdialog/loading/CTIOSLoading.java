@@ -1,4 +1,4 @@
-package com.beike.ctdialog.pageLoading;
+package com.beike.ctdialog.loading;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.beike.ctdialog.R;
-import com.beike.ctdialog.dialog.CTVerticalDialog;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.utils.DensityUtil;
 
@@ -18,7 +17,9 @@ import com.beike.ctdialog.utils.DensityUtil;
  * 自定义加载对话框
  * Created by liupeng on 2017/5/19.
  */
-public class CTPageLoading extends AlertDialog {
+public class CTIOSLoading extends AlertDialog {
+
+    private Context context = null;
 
     private TextView tvMessage = null;
 
@@ -28,22 +29,21 @@ public class CTPageLoading extends AlertDialog {
     private ICancelDialogListener cancelDialogListener;
 
 
-    public CTPageLoading(@Nullable Context context) {
+    public CTIOSLoading(@Nullable Context context) {
         super(context);
-        setCancelable(true);
-        setCanceledOnTouchOutside(false);
+        this.context = context;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.page_loading_layout);
+        setContentView(R.layout.dialog_ios_loading_layout);
 
         WindowManager.LayoutParams p = getWindow().getAttributes();
         p.dimAmount = 0.0f;
-//        p.width = DensityUtil.dip2px(context, 100);
-//        p.height = DensityUtil.dip2px(context, 100);
+        p.width = DensityUtil.dip2px(context, 100);
+        p.height = DensityUtil.dip2px(context, 100);
         getWindow().setBackgroundDrawableResource(R.color.transparent);
         getWindow().setAttributes(p);
 
@@ -51,6 +51,7 @@ public class CTPageLoading extends AlertDialog {
 
         setMessage(message);
         isShowMsg(isShowMsg);
+
     }
 
     /**
@@ -72,11 +73,6 @@ public class CTPageLoading extends AlertDialog {
         }
     }
 
-    public void isCancelAble(boolean isCancelAble) {
-        setCancelable(isCancelAble);
-    }
-
-
     @Override
     public void cancel() {
         super.cancel();
@@ -92,7 +88,7 @@ public class CTPageLoading extends AlertDialog {
     public static class Builder {
         private Context context;
         private String msg;
-        private boolean isShowMsg = true, isCancelAble = true;
+        private boolean isShowMsg = true, isCancelAble = true, isOutsideCancelAble = false;
         private ICancelDialogListener cancelDialogListener;
 
         public Builder(Context context) {
@@ -114,18 +110,24 @@ public class CTPageLoading extends AlertDialog {
             return this;
         }
 
+        public Builder isOutsideCancelAble(boolean isOutsideCancelAble) {
+            this.isOutsideCancelAble = isOutsideCancelAble;
+            return this;
+        }
+
         public Builder setCancelDialogListener(ICancelDialogListener cancelDialogListener) {
             this.cancelDialogListener = cancelDialogListener;
             return this;
         }
 
-        public CTPageLoading build() {
-            CTPageLoading pageLoading = new CTPageLoading(context);
-            pageLoading.setMessage(msg);
-            pageLoading.isShowMsg(isShowMsg);
-            pageLoading.setCancelable(isCancelAble);
-            pageLoading.setCancelDialogListener(cancelDialogListener);
-            return pageLoading;
+        public CTIOSLoading build() {
+            CTIOSLoading ctiosLoading = new CTIOSLoading(context);
+            ctiosLoading.setMessage(msg);
+            ctiosLoading.isShowMsg(isShowMsg);
+            ctiosLoading.setCancelable(isCancelAble);
+            ctiosLoading.setCanceledOnTouchOutside(isOutsideCancelAble);
+            ctiosLoading.setCancelDialogListener(cancelDialogListener);
+            return ctiosLoading;
         }
     }
 }

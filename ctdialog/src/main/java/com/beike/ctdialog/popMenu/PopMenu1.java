@@ -1,7 +1,6 @@
 package com.beike.ctdialog.popMenu;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ import java.util.List;
  * Created by liupeng on 2017/6/15.
  */
 
-public class PopMenu {
+public class PopMenu1 {
 
     private static int DEFAULT_ITEM_ICON_SIZE = 0; // dp
     private static int DEFAULT_ITEM_TEXT_SIZE = 14; // sp
@@ -45,7 +44,7 @@ public class PopMenu {
     private int lineMarginR = LINE_MARGIN;
 
 
-    public PopMenu(Context context) {
+    public PopMenu1(Context context) {
         this.context = context;
 
 //        bubbleLayout = new BubbleLayout(context);
@@ -72,33 +71,33 @@ public class PopMenu {
         popuView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.popup_pop_menu_layout, null);
     }
 
-    public PopMenu setTargetView(View view) {
+    public PopMenu1 setTargetView(View view) {
         bubbleDialog.setClickedView(view);
         return this;
     }
 
-    public PopMenu setBubbleColor(int color) {
+    public PopMenu1 setBubbleColor(int color) {
         bubbleLayout.setBubbleColor(color);
         bubbleDialog.setBubbleLayout(bubbleLayout);
         return this;
     }
 
-    public PopMenu setRelativeOffset(int offset) {
+    public PopMenu1 setRelativeOffset(int offset) {
         bubbleDialog.setRelativeOffset(offset);
         return this;
     }
 
-    public PopMenu setTransParentBackground() {
+    public PopMenu1 setTransParentBackground() {
         bubbleDialog.setTransParentBackground();
         return this;
     }
 
-    public PopMenu setShowLine(boolean isShowLine) {
+    public PopMenu1 setShowLine(boolean isShowLine) {
         this.isShowLine = isShowLine;
         return this;
     }
 
-    public PopMenu addItem(PopMenuItem item) {
+    public PopMenu1 addItem(PopMenuItem item) {
         if (item == null) return this;
         if (this.items == null) {
             this.items = new ArrayList<>();
@@ -107,7 +106,7 @@ public class PopMenu {
         return this;
     }
 
-    public PopMenu addItems(List<PopMenuItem> items) {
+    public PopMenu1 addItems(List<PopMenuItem> items) {
         if (this.items == null) {
             this.items = new ArrayList<>();
         }
@@ -122,7 +121,7 @@ public class PopMenu {
      * @param iconSize 默认单位 dp
      * @return
      */
-    public PopMenu setItemIconSize(int iconSize) {
+    public PopMenu1 setItemIconSize(int iconSize) {
         itemIconSize = iconSize;
         return this;
     }
@@ -133,7 +132,7 @@ public class PopMenu {
      * @param textSize 默认单位 sp
      * @return
      */
-    public PopMenu setItemTextSize(int textSize) {
+    public PopMenu1 setItemTextSize(int textSize) {
         itemTitleSize = textSize;
         return this;
     }
@@ -144,12 +143,12 @@ public class PopMenu {
      * @param paddingSize 默认单位 dp
      * @return
      */
-    public PopMenu setItemPaddingSize(int paddingSize) {
+    public PopMenu1 setItemPaddingSize(int paddingSize) {
         itemPaddingSize = paddingSize;
         return this;
     }
 
-    public PopMenu addContent() {
+    public PopMenu1 addContent() {
         String maxText = "";
         if (items == null) {
             bubbleDialog.addContentView(popuView);
@@ -205,12 +204,12 @@ public class PopMenu {
         popuView.addView(lineView, lineParams);
     }
 
-    public PopMenu setItemClickListener(IItemClickListener clickListener) {
+    public PopMenu1 setItemClickListener(IItemClickListener clickListener) {
         this.clickListener = clickListener;
         return this;
     }
 
-    public PopMenu show(View targetView) {
+    public PopMenu1 show(View targetView) {
         bubbleDialog
                 .calBar(true)
                 .setRelativeOffset(-8)

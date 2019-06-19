@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.xujiaji.happybubble.BubbleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    app:bubblePadding="10dp"
+    app:lookLength="0dp"
+    app:shadowColor="@color/transparent"
+    android:background="@drawable/ic_popup_menu_bg"
+    app:shadowX="0dp"
+    app:shadowY="0dp">
 
-</LinearLayout>
+</com.xujiaji.happybubble.BubbleLayout>

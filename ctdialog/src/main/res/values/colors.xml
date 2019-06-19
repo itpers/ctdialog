@@ -8,12 +8,15 @@
     <color name="ct_progress_bar_color">#AEAEAE</color>
     <color name="ct_line_color">#E0E0E0</color>
     <color name="ct_line_color_1">#EDEDED</color>
+    <color name="ct_line_color_e5">#E5E5E5</color>
     <color name="ct_gray">#FF787878</color>
     <color name="ct_gray_enable">#66000000</color>
     <color name="ct_gray_1">#FF5E5E5E</color>
+    <color name="ct_menu_gray">#A6A8AC</color>
     <color name="ct_black">#333333</color>
     <color name="ct_black_0">#000000</color>
     <!-- A light Holo shade of red -->
     <color name="ct_red">#ffff4444</color>
+    <color name="ct_pop_shadow">#FBFBFB</color>
 
 </resources>

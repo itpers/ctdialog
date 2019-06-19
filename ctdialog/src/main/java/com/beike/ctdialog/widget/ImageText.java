@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -102,10 +103,12 @@ public class ImageText extends LinearLayout {
 //		titleTextView.setIncludeFontPadding(false);
 	}
 
-	public void setImageView(int imgId, int imgSize) {
-		if (imgId > 0) {
-			this.iconImageView.setImageResource(imgId);
-		}
+	public void setImage(@DrawableRes int resId) {
+		this.iconImageView.setImageResource(resId);
+	}
+
+	public void setImageView(@DrawableRes int imgId, int imgSize) {
+		this.iconImageView.setImageResource(imgId);
 
 		int size;
 		if (imgSize > 0) {

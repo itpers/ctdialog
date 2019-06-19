@@ -4,17 +4,14 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.beike.ctdialog.R;
 
 public class PopMenuItem extends LinearLayout {
     private TextView tvTitle;
-    private ImageView ivIcon;
+//    private ImageView ivIcon;
 
     public PopMenuItem(Context context) {
         this(context, null);
@@ -30,9 +27,9 @@ public class PopMenuItem extends LinearLayout {
     }
 
     public void init(Context context) {
-        View view = inflate(context, R.layout.pop_menu_item, null);
+        View view = inflate(context, R.layout.ct_popup_menu_item, null);
         tvTitle = view.findViewById(R.id.tv_text);
-        ivIcon = view.findViewById(R.id.iv_icon);
+//        ivIcon = view.findViewById(R.id.iv_icon);
 //        LayoutParams params = new LayoutParams()
         addView(view);
     }
@@ -55,18 +52,41 @@ public class PopMenuItem extends LinearLayout {
         return tvTitle;
     }
 
-    public PopMenuItem setIcon(int resId) {
-        if (ivIcon != null && resId > 0) {
-            ivIcon.setImageResource(resId);
+//    public PopMenuItem setIcon(int resId) {
+//        if (ivIcon != null && resId > 0) {
+//            ivIcon.setImageResource(resId);
+//        }
+//        return this;
+//    }
+
+//    public PopMenuItem setIconVisible(int visible) {
+//        if (ivIcon != null) {
+//            ivIcon.setVisibility(visible);
+//        }
+//        return this;
+//    }
+
+    public PopMenuItem setEnable(boolean enabled) {
+        if (tvTitle != null) {
+            tvTitle.setEnabled(enabled);
         }
+        this.setEnabled(enabled);
+//        if (ivIcon != null) {
+//            ivIcon.setEnabled(enabled);
+//        }
         return this;
     }
 
-
-
-    public ImageView getIcon() {
-        return ivIcon;
+    public boolean getEnable() {
+        if (tvTitle != null) {
+            return tvTitle.isEnabled();
+        }
+        return true;
     }
+
+//    public ImageView getIcon() {
+//        return ivIcon;
+//    }
 
 
 }

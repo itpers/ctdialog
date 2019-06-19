@@ -1,11 +1,13 @@
 package com.beike.ctwidget;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
@@ -20,12 +22,14 @@ import com.beike.ctdialog.loading.CTLoadingDialog;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.popMenu.PopMenu;
 import com.beike.ctdialog.popMenu.PopMenuItem;
+import com.beike.ctdialog.popupMenue.CTPopupMenu;
 import com.beike.ctdialog.progress.CTProgressDialog;
 import com.beike.ctdialog.iterface.IDialogInputListener;
 import com.beike.ctdialog.iterface.IActionClickListener;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.iterface.IDialogCommonListener;
 import com.beike.ctdialog.sharepopup.CTSharePopup;
+import com.beike.ctdialog.utils.DensityUtil;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
@@ -68,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_pick_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPickPopup();
+//                showPickPopup();
+                popup(v);
             }
         });
 
@@ -224,24 +229,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void popup(View target) {
-
-        new PopMenu(context)
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试试测"))
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测测"))
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测"))
-                .addItem(new PopMenuItem(context).setIcon(R.drawable.ic_scan).setTitle("测试测试测测"))
-                .setShowLine(true)
-                .installContent()
-                .setTargetView(target)
-                .setBubbleColor(Color.BLACK)
-                .setTransParentBackground()
+        new CTPopupMenu.Builder(context)
+                .addItem(new PopMenuItem(context).setTitle("测试测试").setEnable(false))
+                .addItem(new PopMenuItem(context).setTitle("测试测试"))
+                .addItem(new PopMenuItem(context).setTitle("测试测试"))
+                .addItem(new PopMenuItem(context).setTitle("测试测试"))
                 .setItemClickListener(new IItemClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
-                        Toast.makeText(context, "点击了: " + buttonIndex, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "index: " + buttonIndex, Toast.LENGTH_SHORT).show();
                     }
                 })
-                .show();
+                .create()
+                .showAsDropDown(target);
+
+//        new PopMenu(context)
+//                .addItem(new PopMenuItem(context).setTitle("测试测试"))
+//                .addItem(new PopMenuItem(context).setTitle("测试测测"))
+//                .addItem(new PopMenuItem(context).setTitle("测试测"))
+//                .addItem(new PopMenuItem(context).setTitle("测试测试").setEnable(false))
+//                .setTargetView(target)
+////                .setBubbleColor(Color.TRANSPARENT)
+////                .setTransParentBackground()
+//                .addContent()
+//                .setItemClickListener(new IItemClickListener() {
+//                    @Override
+//                    public void onClick(int buttonIndex) {
+//                        Toast.makeText(context, "点击了: " + buttonIndex, Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .show(target);
     }
 
     public void showPickPopup() {

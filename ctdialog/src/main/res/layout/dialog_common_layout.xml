@@ -7,14 +7,15 @@
         android:id="@+id/relative_top_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_shape_dialog_top_half">
+        android:background="@drawable/selector_shape_dialog_top_half"
+        android:paddingTop="10dp">
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/ct_dialog_title"
@@ -28,13 +29,12 @@
             android:layout_below="@id/tv_title"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="6"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:maxLines="6"
-            android:ellipsize="end"
-            android:text=""
             android:textColor="@color/ct_black"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <View
             android:id="@+id/line"

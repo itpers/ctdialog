@@ -60,10 +60,10 @@ public class CTCommonDialog extends AlertDialog{
         getWindow().setAttributes(p);
         getWindow().setBackgroundDrawableResource(R.color.transparent);
 
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        tvMessage = (TextView) findViewById(R.id.tv_msg);
-        tvCancel = (TextView) findViewById(R.id.tv_cancel);
-        tvConfirm = (TextView) findViewById(R.id.tv_confirm);
+        tvTitle = findViewById(R.id.tv_title);
+        tvMessage = findViewById(R.id.tv_msg);
+        tvCancel = findViewById(R.id.tv_cancel);
+        tvConfirm = findViewById(R.id.tv_confirm);
 
         if (title == null) {
             tvTitle.setVisibility(View.GONE);

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -24,6 +25,7 @@ public class CTInputDialog extends AlertDialog {
     public Context context;
     public String title, inputHint, inputDefault;
     public String confirm, cancel;
+    private int lengthLimit = 20;
     public boolean isShowCancel;
     public IDialogInputListener inputListener;
 
@@ -32,14 +34,12 @@ public class CTInputDialog extends AlertDialog {
     private TextView tvCancel;
     private TextView tvConfirm;
 
-    public CTInputDialog(@NonNull Context context, String title, String inputHint, String inputDefault, String cancel, String confirm, boolean isShowCancel, boolean outsideCancelable, @Nullable IDialogInputListener inputListener) {
+    public CTInputDialog(@NonNull Context context, String title, String cancel, String confirm, boolean isShowCancel, boolean outsideCancelable, @Nullable IDialogInputListener inputListener) {
         super(context);
         this.title = title;
-        this.inputHint = inputHint;
         this.cancel = cancel;
         this.confirm = confirm;
         this.inputListener = inputListener;
-        this.inputDefault = inputDefault;
         this.isShowCancel = isShowCancel;
 //        setCancelable(isShowCancel);
         setCanceledOnTouchOutside(outsideCancelable);
@@ -71,16 +71,6 @@ public class CTInputDialog extends AlertDialog {
             tvTitle.setText(title);
         }
 
-        if (inputHint != null) {
-            etContent.setHint(inputHint);
-        }
-
-        if (!TextUtils.isEmpty(inputDefault)) {
-            etContent.setText(inputDefault);
-            etContent.setSelection(inputDefault.length());
-            tvConfirm.setEnabled(true);
-        }
-
         if (!isShowCancel) {
             tvCancel.setVisibility(View.GONE);
             findViewById(R.id.line1).setVisibility(View.GONE);
@@ -92,6 +82,10 @@ public class CTInputDialog extends AlertDialog {
         if (!TextUtils.isEmpty(confirm)) {
             tvConfirm.setText(confirm);
         }
+
+        setInputDefault(inputHint);
+        setInputHint(inputHint);
+        setLengthLimit(lengthLimit);
 
         etContent.addTextChangedListener(new TextWatcher() {
             @Override
@@ -138,6 +132,31 @@ public class CTInputDialog extends AlertDialog {
         return etContent.getText().toString();
     }
 
+    private void setInputHint(String inputHint) {
+        this.inputHint = inputHint;
+        if (etContent != null && inputHint != null) {
+            etContent.setHint(inputHint);
+        }
+    }
+
+    private void setInputDefault(String inputDefault) {
+        this.inputDefault = inputDefault;
+        if (etContent != null && inputDefault != null) {
+            etContent.setText(inputDefault);
+            etContent.setSelection(inputDefault.length());
+            if (tvConfirm != null) {
+                tvConfirm.setEnabled(true);
+            }
+        }
+    }
+
+    private void setLengthLimit(int lengthLimit) {
+        this.lengthLimit = lengthLimit;
+        if (etContent != null && lengthLimit > 0) {
+            etContent.setFilters(new InputFilter[]{new InputFilter.LengthFilter(lengthLimit)});
+        }
+    }
+
     @Override
     public void dismiss() {
         super.dismiss();
@@ -148,6 +167,7 @@ public class CTInputDialog extends AlertDialog {
         public String title, inputHint, inputDefault;
         public String confirm, cancel;
         public boolean isTouchable = false, showCancel = true;
+        public int lengthLimit = 20;
         public IDialogInputListener clickListener;
 
         public Builder(Context context) {
@@ -169,6 +189,11 @@ public class CTInputDialog extends AlertDialog {
         public Builder setInputDefault(String inputDefault) {
             if (TextUtils.isEmpty(inputDefault)) return this;
             this.inputDefault = inputDefault;
+            return this;
+        }
+
+        public Builder setLengthLimit(int lengthLimit) {
+            this.lengthLimit = lengthLimit;
             return this;
         }
 
@@ -200,7 +225,10 @@ public class CTInputDialog extends AlertDialog {
         }
 
         public CTInputDialog create() {
-            final CTInputDialog dialog = new CTInputDialog(context, title, inputHint, inputDefault, cancel, confirm, showCancel, isTouchable, clickListener);
+            final CTInputDialog dialog = new CTInputDialog(context, title, cancel, confirm, showCancel, isTouchable, clickListener);
+            dialog.setInputHint(inputHint);
+            dialog.setInputDefault(inputDefault);
+            dialog.setLengthLimit(lengthLimit);
             dialog.show();
             return dialog;
         }

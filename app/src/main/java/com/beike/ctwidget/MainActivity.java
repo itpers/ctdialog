@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("重命名")
                 .setInputDefault("原名字")
                 .setInputHint("请输入新名称")
+                .setLengthLimit(5)
                 .setInputDialogListener(new IDialogInputListener() {
                     @Override
                     public void onConfirm(String input) {

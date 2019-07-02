@@ -94,7 +94,7 @@ public class CTCommonDialog extends AlertDialog{
             public void onClick(View v) {
                 dismiss();
                 if (commonListener != null) {
-                    commonListener.onCancel();
+                    commonListener.onCancel(true);
                 }
             }
         });
@@ -113,7 +113,7 @@ public class CTCommonDialog extends AlertDialog{
             @Override
             public void onCancel(DialogInterface dialogInterface) {
                 if (commonListener != null) {
-                    commonListener.onCancel();
+                    commonListener.onCancel(false);
                 }
             }
         });

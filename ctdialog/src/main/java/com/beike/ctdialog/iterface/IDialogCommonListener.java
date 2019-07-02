@@ -13,6 +13,7 @@ public interface IDialogCommonListener {
 
     /**
      * 对话框取消
+     * isbutton : 是否是点击取消按钮出发
      */
-    public void onCancel();
+    public void onCancel(boolean isButton);
 }

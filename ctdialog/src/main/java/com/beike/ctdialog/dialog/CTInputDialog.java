@@ -10,6 +10,7 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -83,7 +84,7 @@ public class CTInputDialog extends AlertDialog {
             tvConfirm.setText(confirm);
         }
 
-        setInputDefault(inputHint);
+        setInputDefault(inputDefault);
         setInputHint(inputHint);
         setLengthLimit(lengthLimit);
 
@@ -140,6 +141,7 @@ public class CTInputDialog extends AlertDialog {
     }
 
     private void setInputDefault(String inputDefault) {
+        Log.i("itper", "setInputDefault: " + inputDefault);
         this.inputDefault = inputDefault;
         if (etContent != null && inputDefault != null) {
             etContent.setText(inputDefault);

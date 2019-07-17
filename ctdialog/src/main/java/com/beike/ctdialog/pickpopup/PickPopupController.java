@@ -55,6 +55,13 @@ public class PickPopupController {
             }
         });
 
+        popuView.findViewById(R.id.tv_root).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
         popupWindow.setContentView(popuView);
     }
 

@@ -309,27 +309,13 @@ public class MainActivity extends AppCompatActivity {
     public void showSelectPopup1() {
 
         new CTPickPopup.Builder(context)
-                .setTitle("标题")
-                .addAction("照片")
-                .addAction("相机")
                 .addAction("照片1")
-                .addAction("相机1")
-                .addAction("照片2")
                 .addAction("相机2")
                 .addAction("照片3")
-                .addAction("相机3")
-                .addAction("照片4")
                 .addAction("相机4")
                 .addAction("照片5")
-                .addAction("相机5")
-                .addAction("照片6")
                 .addAction("相机6")
                 .addAction("照片7")
-                .addAction("相机7")
-                .addAction("照片8")
-                .addAction("相机8")
-                .addAction("照片9")
-                .addAction("相机9")
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {

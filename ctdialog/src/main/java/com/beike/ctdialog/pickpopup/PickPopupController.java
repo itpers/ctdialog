@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.beike.ctdialog.R;
@@ -33,6 +34,7 @@ public class PickPopupController {
     private Window window;
     private IActionClickListener clickListener;
     private LinearLayout linearLayout;
+    private ScrollView scrollView;
 
     public PickPopupController(Context context, PopupWindow popupWindow) {
         this.context = context;
@@ -55,19 +57,21 @@ public class PickPopupController {
             }
         });
 
-        popuView.findViewById(R.id.tv_root).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
+        scrollView = popuView.findViewById(R.id.scroll_view);
 
         popupWindow.setContentView(popuView);
     }
 
     public void addAction(LinkedHashMap<String, Boolean> actionMap, String title) {
+        int textViewHeight = context.getResources().getDimensionPixelSize(R.dimen.ct_selector_item_dimen);
         if (linearLayout == null) {
             linearLayout = popuView.findViewById(R.id.linear_add_area);
+        }
+
+        if (actionMap.size() > 6) {
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
+            params.height = textViewHeight * 8;
+            scrollView.setLayoutParams(params);
         }
 
         TextView tvTitle = popuView.findViewById(R.id.tv_title);
@@ -83,13 +87,12 @@ public class PickPopupController {
 //            }
             lineView.setVisibility(View.VISIBLE);
         } else {
-            tvTitle.setVisibility(View.INVISIBLE);
-            lineView.setVisibility(View.INVISIBLE);
+            tvTitle.setVisibility(View.GONE);
+            lineView.setVisibility(View.GONE);
         }
 
         Iterator<Map.Entry<String, Boolean>> iterator = actionMap.entrySet().iterator();
         int i = 0;
-        int textViewHeight = context.getResources().getDimensionPixelSize(R.dimen.ct_selector_item_dimen);
         int textViewPadding = DensityUtil.dip2px(context, 10);
         while (iterator.hasNext()) {
             i++;

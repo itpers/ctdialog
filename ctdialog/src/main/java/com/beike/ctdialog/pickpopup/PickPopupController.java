@@ -59,33 +59,29 @@ public class PickPopupController {
     }
 
     public void addAction(LinkedHashMap<String, Boolean> actionMap, String title) {
-        Boolean isShowTitle = false;
-
         if (linearLayout == null) {
-            linearLayout = (LinearLayout) popuView.findViewById(R.id.linear_add_area);
+            linearLayout = popuView.findViewById(R.id.linear_add_area);
         }
 
-        TextView tvTitle = (TextView) popuView.findViewById(R.id.tv_title);
+        TextView tvTitle = popuView.findViewById(R.id.tv_title);
         View lineView = popuView.findViewById(R.id.line_title);
         if (!TextUtils.isEmpty(title)) {
-            isShowTitle = true;
             tvTitle.setText(title);
             tvTitle.setVisibility(View.VISIBLE);
 
-            if (actionMap.size() == 0) {
-                tvTitle.setBackgroundResource(R.drawable.shape_dialog_bg);
-                lineView.setVisibility(View.INVISIBLE);
-                return;
-            }
+//            if (actionMap.size() == 0) {
+//                tvTitle.setBackgroundResource(R.drawable.shape_dialog_bg);
+//                lineView.setVisibility(View.INVISIBLE);
+//                return;
+//            }
             lineView.setVisibility(View.VISIBLE);
         } else {
-            isShowTitle = false;
             tvTitle.setVisibility(View.INVISIBLE);
             lineView.setVisibility(View.INVISIBLE);
         }
 
         Iterator<Map.Entry<String, Boolean>> iterator = actionMap.entrySet().iterator();
-        int i=0;
+        int i = 0;
         int textViewHeight = context.getResources().getDimensionPixelSize(R.dimen.ct_selector_item_dimen);
         int textViewPadding = DensityUtil.dip2px(context, 10);
         while (iterator.hasNext()) {
@@ -112,34 +108,10 @@ public class PickPopupController {
                     }
                 }
             });
+            textView.setBackgroundColor(context.getResources().getColor(R.color.white));
+            linearLayout.addView(textView, params);
 
-            if (i == 1) {
-                if (actionMap.size() == 1) {
-                    if (isShowTitle) {
-                        textView.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
-                    } else {
-                        textView.setBackgroundResource(R.drawable.selector_shape_dialog_selector_cancel);
-                    }
-
-                    linearLayout.addView(textView, params);
-                } else {
-                    if (isShowTitle) {
-                        textView.setBackgroundResource(R.drawable.selector_shape_dialog_middle);
-                    } else {
-                        textView.setBackgroundResource(R.drawable.selector_shape_dialog_top_half);
-                    }
-
-                    linearLayout.addView(textView, params);
-                    //add line
-                    addLineView();
-                }
-            } else if (i == actionMap.size()) {
-                textView.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
-                linearLayout.addView(textView, params);
-            } else {
-                textView.setBackgroundResource(R.drawable.selector_shape_dialog_middle);
-                linearLayout.addView(textView, params);
-                //add line
+            if (actionMap.size() > 1 && i < actionMap.size()) {
                 addLineView();
             }
         }
@@ -151,7 +123,7 @@ public class PickPopupController {
     public void addLineView() {
         View lineView = new View(context);
         LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, context.getResources().getDimensionPixelSize(R.dimen.ct_line_dimen));
-        lineView.setBackgroundColor(context.getResources().getColor(R.color.ct_gray));
+        lineView.setBackgroundColor(context.getResources().getColor(R.color.ct_line_color_1));
         linearLayout.addView(lineView, lineParams);
     }
 
@@ -165,10 +137,11 @@ public class PickPopupController {
 
     /**
      * 设置背景灰色程度
+     *
      * @param level
      */
     public void setBackgroundLevel(float level) {
-        window = ((Activity)context).getWindow();
+        window = ((Activity) context).getWindow();
 //        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         WindowManager.LayoutParams params = window.getAttributes();
         params.alpha = level;
@@ -184,6 +157,7 @@ public class PickPopupController {
 
     /**
      * outside是否可点击
+     *
      * @param touchable
      */
     private void setOutsideTouchable(boolean touchable) {

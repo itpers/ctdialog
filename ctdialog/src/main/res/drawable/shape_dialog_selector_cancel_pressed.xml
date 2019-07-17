@@ -3,6 +3,6 @@
 
     <solid android:color="@color/ct_transparent_background" />
 
-    <corners android:radius="@dimen/ct_progress_dialog_radius" />
+    <!--<corners android:radius="@dimen/ct_progress_dialog_radius" />-->
 
 </shape>

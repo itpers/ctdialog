@@ -2,8 +2,8 @@ package com.beike.ctdialog.pickpopup;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.beike.ctdialog.iterface.IActionClickListener;
@@ -33,6 +33,12 @@ public class CTPickPopup extends PopupWindow {
     public void dismiss() {
         super.dismiss();
         controller.setBackgroundLevel(1.0f);
+    }
+
+    public void show(View targetView) {
+        if (targetView != null) {
+            showAtLocation(targetView, Gravity.BOTTOM, 0, 0);
+        }
     }
 
     public static class Builder {

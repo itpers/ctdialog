@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 25
-        versionName "1.4.0"
+        versionCode 26
+        versionName "1.4.4"
 
     }
     buildTypes {
@@ -40,8 +40,8 @@ makeJar.dependsOn(clearJar, build)
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
-    compileOnly "com.android.support:design:${rootProject.ext.supportVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+    implementation "com.android.support:design:${rootProject.ext.supportVersion}"
 
     api 'com.github.xujiaji:happy-bubble:1.1.7'
 }

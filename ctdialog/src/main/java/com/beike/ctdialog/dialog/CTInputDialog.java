@@ -36,7 +36,7 @@ public class CTInputDialog extends AlertDialog {
     private TextView tvConfirm;
 
     public CTInputDialog(@NonNull Context context, String title, String cancel, String confirm, boolean isShowCancel, boolean outsideCancelable, @Nullable IDialogInputListener inputListener) {
-        super(context);
+        super(context, R.style.dialog_soft_input);
         this.title = title;
         this.cancel = cancel;
         this.confirm = confirm;

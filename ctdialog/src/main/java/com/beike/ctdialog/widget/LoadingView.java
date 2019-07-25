@@ -27,7 +27,7 @@ public class LoadingView extends View {
 
     private final int RADIAN = 3;
 
-    private String[] color = {"#999999", "#AAAAAA", "#BBBBBB", "#CCCCCC", "#DDDDDD", "#FFFFFF",};
+    private String[] color = {"#A0A0A0", "#AAAAAA", "#B0B0B0", "#BBBBBB", "#C0C0C0", "#DFDFDF"};
 
     public LoadingView(Context context) {
         this(context, null, 0);
@@ -63,11 +63,11 @@ public class LoadingView extends View {
         }
 
         for (int i = 0; i < 12; i++) {
-            if (i - startPosition >= 5) {
+            if (i - startPosition >= 7) {
                 paint.setColor(Color.parseColor(color[5]));
             } else if (i - startPosition >= 0 && i - startPosition < 5) {
                 paint.setColor(Color.parseColor(color[i - startPosition]));
-            } else if (i - startPosition >= -7 && i - startPosition < 0) {
+            } else if (i - startPosition >= -5 && i - startPosition < 0) {
                 paint.setColor(Color.parseColor(color[5]));
             } else if (i - startPosition >= -11 && i - startPosition < -7) {
                 paint.setColor(Color.parseColor(color[12 + i - startPosition]));

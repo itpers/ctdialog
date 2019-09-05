@@ -32,7 +32,7 @@
             android:layout_marginRight="30dp"
             android:background="@drawable/shape_stroke_gray_solid_white"
             android:hint="请输入名字"
-            android:maxLines="3"
+            android:maxLines="4"
             android:padding="10dp"
             android:text=""
             android:textColor="@color/ct_black"

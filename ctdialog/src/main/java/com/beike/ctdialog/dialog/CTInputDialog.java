@@ -52,14 +52,16 @@ public class CTInputDialog extends AlertDialog {
 
         setContentView(R.layout.dialog_input_layout);
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindow().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int screenWidth = metrics.widthPixels > metrics.heightPixels ? metrics.heightPixels : metrics.widthPixels;
-        WindowManager.LayoutParams p = getWindow().getAttributes();
-        p.dimAmount = 0.4f;
-        p.width = (int) (screenWidth * 0.8);
-        getWindow().setAttributes(p);
-        getWindow().setBackgroundDrawableResource(R.color.transparent);
+        if (getWindow() != null) {
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindow().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            int screenWidth = metrics.widthPixels > metrics.heightPixels ? metrics.heightPixels : metrics.widthPixels;
+            WindowManager.LayoutParams p = getWindow().getAttributes();
+            p.dimAmount = 0.4f;
+            p.width = (int) (screenWidth * 0.8);
+            getWindow().setAttributes(p);
+            getWindow().setBackgroundDrawableResource(R.color.transparent);
+        }
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
         etContent = (EditText) findViewById(R.id.tv_msg);
@@ -153,6 +155,10 @@ public class CTInputDialog extends AlertDialog {
     private void setSelectAll(boolean isSelectAll) {
         if (etContent != null) {
             etContent.setSelectAllOnFocus(isSelectAll);
+            if (isSelectAll) {
+                etContent.selectAll();
+            }
+            etContent.requestFocus();
         }
     }
 

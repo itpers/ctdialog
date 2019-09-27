@@ -61,9 +61,8 @@
             android:background="@drawable/selector_shape_dialog_left_bottom"
             android:gravity="center"
             android:text="@string/ct_dialog_cancel"
-            android:textColor="@color/ct_colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="@color/ct_black"
+            android:textSize="16sp" />
 
         <View
             android:id="@+id/line1"
@@ -80,8 +79,7 @@
             android:gravity="center"
             android:text="@string/ct_dialog_confirm"
             android:textColor="@color/ct_colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

@@ -79,7 +79,7 @@ public class CTPopupMenu extends PopupWindow {
             params.apply(popuWindow.controller);
 
 //            int measure = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-//            popuWindow.controller.popuView.measure(measure, measure);
+//            popuWindow.controller.popupView.measure(measure, measure);
             return popuWindow;
         }
     }

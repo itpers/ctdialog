@@ -85,6 +85,7 @@ public class ImageText extends LinearLayout {
 
 		this.iconImageView = new ImageView(getContext());
 		LayoutParams ivParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		ivParams.topMargin = DensityUtil.dip2px(context, 10);
 		iconImageView.setLayoutParams(ivParams);
 		iconImageView.setDuplicateParentStateEnabled(true);
 		this.addView(iconImageView);
@@ -94,6 +95,7 @@ public class ImageText extends LinearLayout {
 		titleTextView.setLayoutParams(tvParams);
 		tvParams.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
 		tvParams.topMargin = DensityUtil.dip2px(context, 5);
+		tvParams.bottomMargin = DensityUtil.dip2px(context, 10);
 		this.titleTextView.setTextSize(13);
 		this.titleTextView.setTextColor(Color.BLACK);
 		this.titleTextView.setHighlightColor(Color.DKGRAY);

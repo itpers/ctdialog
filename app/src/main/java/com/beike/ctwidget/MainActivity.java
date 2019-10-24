@@ -26,6 +26,7 @@ import com.beike.ctdialog.iterface.IActionClickListener;
 import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.iterface.IDialogCommonListener;
 import com.beike.ctdialog.sharepopup.CTSharePopup;
+import com.beike.ctdialog.sharepopup.ShareItem;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
@@ -40,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_common_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCommonDilaog();
+                showCommonDialog();
             }
         });
 
         findViewById(R.id.bt_checkbox_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCheckboxDilaog();
+                showCheckboxDialog();
             }
         });
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_vertical_bt_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showVerticalDilaog();
+                showVerticalDialog();
             }
         });
 
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt_loding_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLoadingDilalog();
+                showLoadingDialog();
             }
         });
 
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void showCheckboxDilaog() {
+    public void showCheckboxDialog() {
         new CTCheckBoxDialog.Builder(context)
                 .setTitle("测试测试测试")
                 .setMessage("aaaaaaaaaa")
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void showCommonDilaog() {
+    public void showCommonDialog() {
         new CTCommonDialog.Builder(context)
                 .setTitle("测试测试测试")
                 .setDialogListener(new IDialogCommonListener() {
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).create();
     }
-    public void showVerticalDilaog() {
+    public void showVerticalDialog() {
         new CTVerticalDialog.Builder(context)
                 .setTitle("您对XXX提供的服务还满意吗？")
                 .setTop("不是很满意")
@@ -208,21 +209,21 @@ public class MainActivity extends AppCompatActivity {
         pageLoading.show();
     }
 
-    public void showLoadingDilalog() {
+    public void showLoadingDialog() {
         CTIOSLoading loadingDialog = new CTIOSLoading
                 .Builder(context)
                 .isShowMessage(false)
                 .setCancelDialogListener(new ICancelDialogListener() {
                     @Override
                     public void cancel() {
-                        showLoadingDilalog1();
+                        showLoadingDialog1();
                     }
                 })
                 .build();
         loadingDialog.show();
     }
 
-    public void showLoadingDilalog1() {
+    public void showLoadingDialog1() {
         CTLoading processDialog = new CTLoading(context);
         processDialog.show();
         processDialog.setCancelDialogListener(new ICancelDialogListener() {
@@ -338,12 +339,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showShare() {
-
         new CTSharePopup.Builder(context)
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_friend), "微信好友")
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_timeline), "朋友圈")
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_dd), "钉钉")
-                .addControl(context.getResources().getDrawable(R.drawable.ic_web_control_refresh), "刷新")
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_friend, "微信好友"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_timeline, "朋友圈"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_dd, "钉钉"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_friend, "微信好友"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_timeline, "朋友圈"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_dd, "钉钉"))
+                .addControl(new ShareItem(R.drawable.ic_web_control_refresh, "刷新"))
                 .setTitle(R.string.ct_dialog_title)
                 .setActionClickListener(new IActionClickListener() {
                     @Override
@@ -368,16 +371,16 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 })
-                .create()
-                .showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
+                .create(getWindow().getDecorView());
     }
 
     public void showShare1() {
 
         new CTSharePopup.Builder(context)
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_friend), "微信好友")
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_timeline), "朋友圈")
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_dd), "钉钉")
+                .addShare(new ShareItem())
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_friend, "微信好友"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_timeline, "朋友圈"))
+                .addShare(new ShareItem())
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
@@ -401,16 +404,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 })
-                .create()
-                .showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
+                .create(getWindow().getDecorView());
     }
 
     public void showShare2() {
 
         new CTSharePopup.Builder(context)
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_friend), "微信好友")
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_wx_timeline), "朋友圈")
-                .addShare(context.getResources().getDrawable(R.drawable.ic_share_to_dd), "钉钉")
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_friend, "微信好友"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_wx_timeline, "朋友圈"))
+                .addShare(new ShareItem(R.drawable.ic_share_to_dd, "钉钉"))
                 .setTitle("分享到:")
                 .setActionClickListener(new IActionClickListener() {
                     @Override
@@ -434,7 +436,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 })
-                .create()
-                .showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
+                .create(getWindow().getDecorView());
     }
 }

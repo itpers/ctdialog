@@ -80,7 +80,7 @@ public class PickPopupController {
             tvTitle.setText(title);
             tvTitle.setVisibility(View.VISIBLE);
 
-//            if (actionMap.size() == 0) {
+//            if (actions.size() == 0) {
 //                tvTitle.setBackgroundResource(R.drawable.shape_dialog_bg);
 //                lineView.setVisibility(View.INVISIBLE);
 //                return;

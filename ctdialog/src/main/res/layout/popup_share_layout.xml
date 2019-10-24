@@ -9,106 +9,32 @@
         android:id="@+id/share_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingTop="20dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
         android:text="分享到"
         android:textColor="@color/ct_progress_bar_color"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:visibility="gone" />
 
-
-    <HorizontalScrollView
-        android:id="@+id/share_scrollview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_actions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:id="@+id/linear_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!--<com.beike.ctdialog.widget.ImageText xmlns:imageText="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/wx_share_session"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--imageText:imageSize="50dp"-->
-            <!--imageText:itSrc="@mipmap/ic_share_to_wx_friend"-->
-            <!--imageText:itText="微信好友"-->
-            <!--imageText:textColor="@color/ct_gray"-->
-            <!--imageText:textSize="13sp" />-->
-
-            <!--<com.beike.ctdialog.widget.ImageText xmlns:imageText="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/wx_share_timeline"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--imageText:imageSize="50dp"-->
-            <!--imageText:itSrc="@mipmap/ic_share_to_wx_timeline"-->
-            <!--imageText:itText="朋友圈"-->
-            <!--imageText:textColor="@color/ct_gray"-->
-            <!--imageText:textSize="13sp" />-->
-
-            <!--<com.beike.ctdialog.widget.ImageText xmlns:imageText="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/dd_share"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--imageText:imageSize="50dp"-->
-            <!--imageText:itSrc="@mipmap/ic_share_to_dd"-->
-            <!--imageText:itText="钉钉"-->
-            <!--imageText:textColor="@color/ct_gray"-->
-            <!--imageText:textSize="13sp" />-->
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ct_line_dimen"
-        android:background="@color/ct_line_color_1"
+        android:layout_marginTop="10dp"
         android:visibility="gone" />
 
-    <HorizontalScrollView
-        android:id="@+id/control_scrollview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:scrollbars="none"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:id="@+id/linear_contorl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!--<com.beike.ctdialog.widget.ImageText-->
-            <!--xmlns:imageText="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/it_refresh"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--imageText:imageSize="50dp"-->
-            <!--imageText:itSrc="@mipmap/ic_web_control_refresh"-->
-            <!--imageText:itText="刷新"-->
-            <!--imageText:textColor="@color/ct_gray"-->
-            <!--imageText:textSize="13sp" />-->
-
-        </LinearLayout>
-    </HorizontalScrollView>
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_cancel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ct_selector_item_dimen"
+        android:layout_marginTop="5dp"
         android:background="@color/white"
         android:gravity="center"
         android:text="@string/ct_dialog_cancel"

@@ -59,8 +59,8 @@ public class CTLoading extends AlertDialog {
 
         WindowManager.LayoutParams p = getWindow().getAttributes();
         p.dimAmount = 0.0f;
-        p.width = DensityUtil.dip2px(context, 100);
-        p.height = DensityUtil.dip2px(context, 100);
+        p.width = DensityUtil.dip2px(context, 120);
+        p.height = DensityUtil.dip2px(context, 120);
         getWindow().setBackgroundDrawableResource(R.color.transparent);
         getWindow().setAttributes(p);
 

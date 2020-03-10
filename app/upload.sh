@@ -1,0 +1,1 @@
+curl -F "file=@./app/build/outputs/apk/release/app-release-unsigned.apk" -F "uKey=604764cda8ea919064e1f408d5ec6bfd" -F "_api_key=440dd8f41962d054e0e2abc1ea830622" https://qiniu-storage.pgyer.com/apiv1/app/upload

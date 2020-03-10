@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
-import com.beike.ctdialog.dialog.CTCommonDialog;
+import com.beike.ctdialog.dialog.CTIconDialog;
 import com.beike.ctdialog.dialog.CTVerticalDialog;
 import com.beike.ctdialog.dialog.CTInputDialog;
 import com.beike.ctdialog.iterface.IDialogCheckboxListener;
@@ -144,8 +144,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showCommonDialog() {
-        new CTCommonDialog.Builder(context)
+        new CTIconDialog.Builder(context)
                 .setTitle("测试测试测试")
+                .setMessage("收藏和分享链接自动失效。\n请注意清除“最近”和“传输”列表下的相\n关记录哦。")
+                .setDialogType(CTIconDialog.Builder.DIALOG_TYPE_WARNING)
+                .setShowCancel(false)
                 .setDialogListener(new IDialogCommonListener() {
                     @Override
                     public void onConfirm() {
@@ -169,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 .setInputDialogListener(new IDialogInputListener() {
                     @Override
                     public void onConfirm(String input) {
-                        Toast.makeText(context, input+"", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, input + "", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -178,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).create();
     }
+
     public void showVerticalDialog() {
         new CTVerticalDialog.Builder(context)
                 .setTitle("您对XXX提供的服务还满意吗？")
@@ -212,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
     public void showLoadingDialog() {
         CTIOSLoading loadingDialog = new CTIOSLoading
                 .Builder(context)
-                .isShowMessage(false)
+                .isShowMessage(true)
                 .setCancelDialogListener(new ICancelDialogListener() {
                     @Override
                     public void cancel() {
@@ -226,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
     public void showLoadingDialog1() {
         CTLoading processDialog = new CTLoading(context);
         processDialog.show();
+        processDialog.setMessage("视频首次播放需要转码预计耗时较长，请耐心等待");
         processDialog.setCancelDialogListener(new ICancelDialogListener() {
             @Override
             public void cancel() {

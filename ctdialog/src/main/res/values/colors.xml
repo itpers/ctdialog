@@ -2,11 +2,13 @@
     <color name="ct_colorPrimary">#4285f4</color>
     <color name="white">#FFFFFF</color>
     <color name="ct_translucent_white">#f5ffffff</color>
+    <color name="dialog_dark">#FF10111E</color>
     <color name="transparent">#00000000</color>
     <color name="ct_transparent_background">#f5EEEEEE</color>
     <color name="ct_translucent_black">#f55E5E5E</color>
     <color name="ct_progress_bar_color">#AEAEAE</color>
     <color name="ct_line_color">#E0E0E0</color>
+    <color name="ct_dark_line_color">#2B2D45</color>
     <color name="ct_line_color_1">#EDEDED</color>
     <color name="ct_line_color_e5">#E5E5E5</color>
     <color name="ct_gray">#FF787878</color>

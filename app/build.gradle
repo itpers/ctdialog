@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def apkFileName
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -15,6 +17,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            apkFileName = "pan_release.apk"
+//            outputFileName = "pan_v${versionName}_b${versionCode}_${variant.productFlavors[0].name}_${buildType.name}_${rootProject.ext.releaseTime}.apk"
+            outputFileName = apkFileName
+        }
+    }
+}
+
+task uploadApk(type: Exec) {
+    commandLine 'sh', '-c', "curl -F 'file=@./build/outputs/apk/release/pan_release.apk' -F 'uKey=604764cda8ea919064e1f408d5ec6bfd' -F '_api_key=440dd8f41962d054e0e2abc1ea830622' https://qiniu-storage.pgyer.com/apiv1/app/upload"
+}
+
+task buildUploadApk() {
+    dependsOn 'assembleRelease'
+    dependsOn 'uploadApk'
 }
 
 dependencies {

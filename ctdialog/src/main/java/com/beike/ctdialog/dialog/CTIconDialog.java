@@ -1,44 +1,54 @@
 package com.beike.ctdialog.dialog;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IDialogCommonListener;
 
+import jp.wasabeef.blurry.Blurry;
+
 /**
  * Created by liupeng on 2017/6/19.
  */
 
-public class CTIconDialog extends AlertDialog{
+public class CTIconDialog extends AlertDialog {
 
+    private Context context;
     private TextView tvTitle;
     private TextView tvMessage;
     private TextView tvCancel;
     private TextView tvConfirm;
     private ImageView ivDialogType;
+    private ViewGroup rootView;
 
     private String title;
     private String message;
     private String cancel;
     private String confirm;
-    private boolean isShowCancel;
+    private boolean isShowCancel, cancelable, outsideCancelable;
     private int dialogType;
 
     private IDialogCommonListener commonListener;
 
-    public CTIconDialog(@NonNull Context context, String title, String message, String cancel, String confirm, boolean isShowCancel, boolean cancelable, boolean outsideCancelable, int dialogType, @Nullable IDialogCommonListener commonListener) {
+    public CTIconDialog(@NonNull Context context, String title, String message, String cancel, String confirm, boolean isShowCancel, boolean cancelable, boolean outsideCancelable, int dialogType, ViewGroup rootView, @Nullable IDialogCommonListener commonListener) {
         super(context);
+        this.context = context;
         this.title = title;
         this.message = message;
         this.cancel = cancel;
@@ -46,6 +56,9 @@ public class CTIconDialog extends AlertDialog{
         this.commonListener = commonListener;
         this.isShowCancel = isShowCancel;
         this.dialogType = dialogType;
+        this.cancelable = cancelable;
+        this.rootView = rootView;
+        this.outsideCancelable = outsideCancelable;
         setCancelable(cancelable);
         setCanceledOnTouchOutside(outsideCancelable);
     }
@@ -55,14 +68,23 @@ public class CTIconDialog extends AlertDialog{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_icon_layout);
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindow().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int screenWidth = Math.min(metrics.widthPixels, metrics.heightPixels);
-        WindowManager.LayoutParams p = getWindow().getAttributes();
-        p.dimAmount = 0.9f;
-        p.width = (int) (screenWidth * 0.8);
-        getWindow().setAttributes(p);
-        getWindow().setBackgroundDrawableResource(R.color.transparent);
+        Window window = getWindow();
+        if (window != null) {
+            DisplayMetrics metrics = new DisplayMetrics();
+            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
+            window.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            WindowManager.LayoutParams p = window.getAttributes();
+            p.dimAmount = 0.0f;
+            p.width = (int) (Math.min(metrics.widthPixels, metrics.heightPixels) * 0.8);
+//            p.height = metrics.heightPixels;
+            window.setAttributes(p);
+            window.setBackgroundDrawableResource(R.color.transparent);
+
+//            RelativeLayout rlDialog = findViewById(R.id.rl_dialog_layout);
+//            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rlDialog.getLayoutParams();
+//            layoutParams.width = (int) (Math.min(metrics.widthPixels, metrics.heightPixels) * 0.8);
+//            rlDialog.setLayoutParams(layoutParams);
+        }
 
         tvTitle = findViewById(R.id.tv_title);
         tvMessage = findViewById(R.id.tv_msg);
@@ -86,7 +108,7 @@ public class CTIconDialog extends AlertDialog{
             tvCancel.setVisibility(View.GONE);
             findViewById(R.id.line1).setVisibility(View.GONE);
             tvConfirm.setBackgroundResource(R.drawable.shape_dialog_bottom_half_dark_normal);
-        } else if (!TextUtils.isEmpty(cancel)){
+        } else if (!TextUtils.isEmpty(cancel)) {
             tvCancel.setText(cancel);
         }
 
@@ -134,6 +156,17 @@ public class CTIconDialog extends AlertDialog{
                 ivDialogType.setImageResource(R.drawable.ic_dialog_warning);
                 break;
         }
+        if (rootView != null && ViewCompat.isAttachedToWindow(rootView)) {
+            Blurry.with(context).sampling(3).animate().onto(rootView);
+        }
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        if (rootView != null && ViewCompat.isAttachedToWindow(rootView)) {
+            Blurry.delete(rootView);
+        }
     }
 
     @Override
@@ -149,12 +182,13 @@ public class CTIconDialog extends AlertDialog{
     }
 
     public static class Builder {
-        public Context context;
-        public String title, message;
-        public String confirm, cancel;
-        public int dialogType;
-        public boolean isTouchable = false, showCancel = true, cancelable = true;
-        public IDialogCommonListener clickListener;
+        private Context context;
+        private String title, message;
+        private String confirm, cancel;
+        private int dialogType;
+        private boolean isTouchable = false, showCancel = true, cancelable = true;
+        private ViewGroup rootView;
+        private IDialogCommonListener clickListener;
 
         public static final int DIALOG_TYPE_SUCCESS = 0;
         public static final int DIALOG_TYPE_ERROR = 1;
@@ -193,7 +227,7 @@ public class CTIconDialog extends AlertDialog{
             return this;
         }
 
-        public Builder setIsCancelable(boolean cancelable) {
+        public Builder setCancelable(boolean cancelable) {
             this.cancelable = cancelable;
             return this;
         }
@@ -213,8 +247,13 @@ public class CTIconDialog extends AlertDialog{
             return this;
         }
 
+        public Builder setRootView(ViewGroup rootView) {
+            this.rootView = rootView;
+            return this;
+        }
+
         public CTIconDialog create() {
-            final CTIconDialog dialog = new CTIconDialog(context, title, message, cancel, confirm, showCancel, cancelable, isTouchable, dialogType, clickListener);
+            final CTIconDialog dialog = new CTIconDialog(context, title, message, cancel, confirm, showCancel, cancelable, isTouchable, dialogType, rootView, clickListener);
             dialog.show();
             return dialog;
         }

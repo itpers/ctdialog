@@ -1,33 +1,31 @@
-package com.beike.ctdialog.popupMenue;
+package com.beike.ctdialog.menuPopup;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.PopupWindow;
 
-import com.beike.ctdialog.iterface.IActionClickListener;
 import com.beike.ctdialog.iterface.IItemClickListener;
 import com.beike.ctdialog.popMenu.PopMenuItem;
 
 /**
  * Created by liupeng on 2017/6/15.
  */
-public class CTPopupMenu extends PopupWindow {
+public class CTMenuPopup extends PopupWindow {
 
-    private PopupMenuController controller;
+    private MenuPopupController controller;
 
     @Override
     public int getWidth() {
-        return controller.popuView.getMeasuredWidth();
+        return controller.popupView.getMeasuredWidth();
     }
 
     @Override
     public int getHeight() {
-        return controller.popuView.getMeasuredHeight();
+        return controller.popupView.getMeasuredHeight();
     }
 
-    private CTPopupMenu(Context context) {
-        controller = new PopupMenuController(context, this);
+    private CTMenuPopup(Context context) {
+        controller = new MenuPopupController(context, this);
     }
 
     @Override
@@ -37,10 +35,10 @@ public class CTPopupMenu extends PopupWindow {
     }
 
     public static class Builder {
-        private PopupMenuController.PopupParams params;
+        private MenuPopupController.PopupParams params;
 
         public Builder(Context context) {
-            params = new PopupMenuController.PopupParams(context);
+            params = new MenuPopupController.PopupParams(context);
         }
 
         public Builder setTitle(String title) {
@@ -51,6 +49,11 @@ public class CTPopupMenu extends PopupWindow {
 
         public Builder addItem(PopMenuItem item) {
             params.items.add(item);
+            return this;
+        }
+
+        public Builder setDarkModel(boolean isDarkModel) {
+            params.isDarkModel = isDarkModel;
             return this;
         }
 
@@ -74,8 +77,8 @@ public class CTPopupMenu extends PopupWindow {
             return this;
         }
 
-        public CTPopupMenu create() {
-            final CTPopupMenu popuWindow = new CTPopupMenu(params.context);
+        public CTMenuPopup create() {
+            final CTMenuPopup popuWindow = new CTMenuPopup(params.context);
             params.apply(popuWindow.controller);
 
 //            int measure = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);

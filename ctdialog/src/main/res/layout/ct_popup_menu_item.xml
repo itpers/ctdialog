@@ -11,7 +11,7 @@
         android:gravity="center"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textColor="@drawable/selecter_popup_menu_item_text_color"
+        android:textColor="@color/menu_popup_item_text_color"
         android:textSize="14sp" />
 
 </RelativeLayout>

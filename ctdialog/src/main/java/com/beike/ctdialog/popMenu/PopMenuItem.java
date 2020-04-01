@@ -84,6 +84,12 @@ public class PopMenuItem extends LinearLayout {
         return true;
     }
 
+    public void setDarkModel(boolean isDarkModel) {
+        if (isDarkModel && tvTitle != null) {
+            tvTitle.setTextColor(getResources().getColorStateList(R.color.dark_menu_popup_item_text_color));
+        }
+    }
+
 //    public ImageView getIcon() {
 //        return ivIcon;
 //    }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
@@ -19,7 +20,7 @@ import com.beike.ctdialog.loading.CTLoading;
 import com.beike.ctdialog.pageLoading.CTPageLoading;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
 import com.beike.ctdialog.popMenu.PopMenuItem;
-import com.beike.ctdialog.popupMenue.CTPopupMenu;
+import com.beike.ctdialog.menuPopup.CTMenuPopup;
 import com.beike.ctdialog.progress.CTProgressDialog;
 import com.beike.ctdialog.iterface.IDialogInputListener;
 import com.beike.ctdialog.iterface.IActionClickListener;
@@ -27,6 +28,7 @@ import com.beike.ctdialog.iterface.ICancelDialogListener;
 import com.beike.ctdialog.iterface.IDialogCommonListener;
 import com.beike.ctdialog.sharepopup.CTSharePopup;
 import com.beike.ctdialog.sharepopup.ShareItem;
+import com.beike.ctdialog.widget.EllipsisTextView;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
@@ -121,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 popup(view);
             }
         });
+
+
+        EllipsisTextView textView = findViewById(R.id.tv_text);
+        textView.setTexts("对于TextView,我想大家都已经熟的不能再熟我想大家都已经熟的不能再熟我想大家都已经熟的不能再熟我想大家都已经熟的不能再熟？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节", "jpeg");
     }
 
 
@@ -149,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage("收藏和分享链接自动失效。\n请注意清除“最近”和“传输”列表下的相\n关记录哦。")
                 .setDialogType(CTIconDialog.Builder.DIALOG_TYPE_WARNING)
                 .setShowCancel(false)
+                .setCancelable(false)
+                .setRootView((ViewGroup) getWindow().getDecorView())
                 .setDialogListener(new IDialogCommonListener() {
                     @Override
                     public void onConfirm() {
@@ -250,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void popup(View target) {
-        new CTPopupMenu.Builder(context)
+        new CTMenuPopup.Builder(context)
                 .addItem(new PopMenuItem(context).setTitle("测试测试").setEnable(false))
                 .addItem(new PopMenuItem(context).setTitle("测试测试"))
                 .addItem(new PopMenuItem(context).setTitle("测试测试"))

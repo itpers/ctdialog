@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.util.Log;
 
 public class EllipsisTextView extends AppCompatTextView {
     private int suffixSize;
@@ -37,15 +36,39 @@ public class EllipsisTextView extends AppCompatTextView {
         }
 
         String content = getText().toString();
-        Log.i("itper", "onMeasure: 1 content = " + content);
         String lastChar = content.substring(content.length() - 1 - suffixSize);
-        content = content.substring(0, content.length() - ellipsisCount - suffixSize - 1);
-        Log.i("itper", "onMeasure: 2 content = " + content);
+        float lastCharWidth = getTextWidth(lastChar);
+        int ellipsisIndex = content.length() - 1 - ellipsisCount;
+        int replaceIndex = ellipsisIndex - lastChar.length();
+        String replaceChar = content.substring(replaceIndex, ellipsisIndex);
+        float replaceWidth = getTextWidth(replaceChar);
+        if (lastCharWidth > replaceWidth && replaceIndex > 0) {
+            replaceIndex--;
+            replaceChar = content.substring(replaceIndex, ellipsisIndex);
+            while (lastCharWidth > getTextWidth(replaceChar) && replaceIndex > 0) {
+                replaceChar = content.substring(replaceIndex, ellipsisIndex);
+                replaceIndex--;
+            }
+            if (replaceIndex < content.length()) {
+                replaceIndex++;
+            }
+        } else if (lastCharWidth < replaceWidth && replaceIndex < ellipsisIndex) {
+            replaceIndex++;
+            replaceChar = content.substring(replaceIndex, ellipsisIndex);
+            while (lastCharWidth < getTextWidth(replaceChar) && replaceIndex < ellipsisIndex) {
+                replaceChar = content.substring(replaceIndex, ellipsisIndex);
+                replaceIndex++;
+            }
+            if (replaceIndex > 0) {
+                replaceIndex--;
+            }
+        }
+        content = content.substring(0, replaceIndex);
         setText(content + "..." + lastChar);
     }
 
     public void setTexts(String text, String ext) {
-        if (ext != null) {
+        if (ext != null && ext.length() > 0) {
             suffixSize = ext.length() + 1;
             setText(text + "." + ext);
         } else {
@@ -54,4 +77,9 @@ public class EllipsisTextView extends AppCompatTextView {
         }
 
     }
+
+    private float getTextWidth(String text) {
+        return getPaint().measureText(text);
+    }
+
 }

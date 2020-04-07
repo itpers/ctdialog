@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IItemClickListener;
+import com.beike.ctdialog.menuPopup.PopMenuItem;
 import com.beike.ctdialog.utils.DensityUtil;
 import com.xujiaji.happybubble.BubbleDialog;
 import com.xujiaji.happybubble.BubbleLayout;

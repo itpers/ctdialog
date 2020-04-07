@@ -1,7 +1,6 @@
 package com.beike.ctdialog.popMenu;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IItemClickListener;
+import com.beike.ctdialog.menuPopup.PopMenuItem;
 import com.beike.ctdialog.utils.DensityUtil;
 import com.xujiaji.happybubble.BubbleDialog;
 import com.xujiaji.happybubble.BubbleLayout;

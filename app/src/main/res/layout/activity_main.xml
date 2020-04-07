@@ -17,25 +17,36 @@
             android:orientation="vertical">
 
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@drawable/shadow_card"
-                android:layout_margin="20dp">
+                android:background="@color/ct_red">
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/card_light_shadow_radius_20" />
+
+            </FrameLayout>
 
             <com.beike.ctdialog.widget.EllipsisTextView
                 android:id="@+id/tv_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="14dp"
+                android:background="#FF191A2A"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:background="#FF191A2A"
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="22sp" />
+
+            <Button
+                android:id="@+id/popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pop"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/bt_common_dialog"
@@ -90,13 +101,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="进度条" />
-
-            <Button
-                android:id="@+id/popup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="pop"
-                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/popup1"

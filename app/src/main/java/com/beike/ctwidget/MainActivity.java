@@ -17,9 +17,9 @@ import com.beike.ctdialog.iterface.IDialogVerticalListener;
 import com.beike.ctdialog.iterface.IItemClickListener;
 import com.beike.ctdialog.loading.CTIOSLoading;
 import com.beike.ctdialog.loading.CTLoading;
+import com.beike.ctdialog.menuPopup.PopupItemDate;
 import com.beike.ctdialog.pageLoading.CTPageLoading;
 import com.beike.ctdialog.pickpopup.CTPickPopup;
-import com.beike.ctdialog.popMenu.PopMenuItem;
 import com.beike.ctdialog.menuPopup.CTMenuPopup;
 import com.beike.ctdialog.progress.CTProgressDialog;
 import com.beike.ctdialog.iterface.IDialogInputListener;
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         EllipsisTextView textView = findViewById(R.id.tv_text);
-        textView.setTexts("对于TextView,我想大家都已经熟的不能再熟我想大家都已经熟的不能再熟我想大家都已经熟的不能再熟我想大家都已经熟的不能再熟？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节", "jpeg");
+        textView.setTexts("最后就是打包普通的第三方插件。有两种方案一种是直接用webpack打包到引用到插件的 js 里去，这种不用多说，直接引入就行。另一种则是像 jQuery 一样设置为全局变量，同样的方式引xxx", "jpeg");
     }
 
 
@@ -259,18 +259,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void popup(View target) {
         new CTMenuPopup.Builder(context)
-                .addItem(new PopMenuItem(context).setTitle("测试测试").setEnable(false))
-                .addItem(new PopMenuItem(context).setTitle("测试测试"))
-                .addItem(new PopMenuItem(context).setTitle("测试测试"))
-                .addItem(new PopMenuItem(context).setTitle("测试测试"))
+                .addItem(PopupItemDate.get("测试").withIcon(R.drawable.ic_share_to_wx_friend).withEnable(false))
+                .addItem(PopupItemDate.get("测试测试").withIcon(R.drawable.ic_share_to_wx_friend))
+                .addItem(PopupItemDate.get("测试测").withIcon(R.drawable.ic_share_to_wx_friend))
+                .addItem(PopupItemDate.get("测试测试").withIcon(R.drawable.ic_share_to_wx_friend))
+                .addItem(PopupItemDate.get("测试测试123").withIcon(R.drawable.ic_share_to_wx_friend))
+                .addItem(PopupItemDate.get("测试测试").withIcon(R.drawable.ic_share_to_wx_friend))
                 .setItemClickListener(new IItemClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
                         Toast.makeText(context, "index: " + buttonIndex, Toast.LENGTH_SHORT).show();
                     }
                 })
-                .create()
-                .showAsDropDown(target);
+                .setDarkModel(false)
+                .create(target);
 
 //        new PopMenu(context)
 //                .addItem(new PopMenuItem(context).setTitle("测试测试"))

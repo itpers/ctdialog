@@ -7,7 +7,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 26
-        versionName "1.6.0"
+        versionName "1.6.1"
 
     }
     buildTypes {
@@ -43,6 +43,5 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
     implementation "com.android.support:design:${rootProject.ext.supportVersion}"
 
-    api 'com.github.xujiaji:happy-bubble:1.1.7'
     implementation 'jp.wasabeef:blurry:3.0.0'
 }

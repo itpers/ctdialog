@@ -1,7 +1,5 @@
 package com.beike.ctdialog.sharepopup;
 
-import android.graphics.drawable.Drawable;
-
 public class ShareItem {
     public int resId;
     public String name;

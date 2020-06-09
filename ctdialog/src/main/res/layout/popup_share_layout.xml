@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
+    android:background="@color/gray_f2"
     android:orientation="vertical">
 
     <TextView
@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="10dp"
+        android:padding="7dp"
         android:text="分享到"
         android:textColor="@color/ct_progress_bar_color"
         android:textSize="12sp"
@@ -20,14 +20,14 @@
         android:id="@+id/rv_actions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:visibility="gone" />
 
     <TextView

@@ -22,7 +22,7 @@
             android:textColor="@color/ct_black"
             android:textSize="17sp" />
 
-        <EditText
+        <com.beike.ctdialog.widget.EInputView
             android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

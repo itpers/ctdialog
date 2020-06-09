@@ -19,7 +19,7 @@ import com.beike.ctdialog.iterface.IDialogCommonListener;
  * Created by liupeng on 2017/6/19.
  */
 
-public class CTCommonDialog extends AlertDialog{
+public class CTCommonDialog extends AlertDialog {
 
     private TextView tvTitle;
     private TextView tvMessage;
@@ -27,14 +27,15 @@ public class CTCommonDialog extends AlertDialog{
     private TextView tvConfirm;
 
     private String title;
-    private String message;
+    private CharSequence message;
     private String cancel;
     private String confirm;
+    private int msgGravity;
     private boolean isShowCancel;
 
     private IDialogCommonListener commonListener;
 
-    public CTCommonDialog(@NonNull Context context, String title, String message, String cancel, String confirm, boolean isShowCancel, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCommonListener commonListener) {
+    public CTCommonDialog(@NonNull Context context, String title, CharSequence message, String cancel, String confirm, int msgGravity, boolean isShowCancel, boolean cancelable, boolean outsideCancelable, @Nullable IDialogCommonListener commonListener) {
         super(context);
         this.title = title;
         this.message = message;
@@ -42,6 +43,7 @@ public class CTCommonDialog extends AlertDialog{
         this.confirm = confirm;
         this.commonListener = commonListener;
         this.isShowCancel = isShowCancel;
+        this.msgGravity = msgGravity;
         setCancelable(cancelable);
         setCanceledOnTouchOutside(outsideCancelable);
     }
@@ -65,6 +67,8 @@ public class CTCommonDialog extends AlertDialog{
         tvCancel = findViewById(R.id.tv_cancel);
         tvConfirm = findViewById(R.id.tv_confirm);
 
+        tvMessage.setGravity(msgGravity);
+
         if (title == null) {
             tvTitle.setVisibility(View.GONE);
         } else {
@@ -81,7 +85,7 @@ public class CTCommonDialog extends AlertDialog{
             tvCancel.setVisibility(View.GONE);
             findViewById(R.id.line1).setVisibility(View.GONE);
             tvConfirm.setBackgroundResource(R.drawable.selector_shape_dialog_bottom_half);
-        } else if (!TextUtils.isEmpty(cancel)){
+        } else if (!TextUtils.isEmpty(cancel)) {
             tvCancel.setText(cancel);
         }
 
@@ -132,11 +136,13 @@ public class CTCommonDialog extends AlertDialog{
     }
 
     public static class Builder {
-        public Context context;
-        public String title, message;
-        public String confirm, cancel;
-        public boolean isTouchable = false, showCancel = true, cancelable = true;
-        public IDialogCommonListener clickListener;
+        private Context context;
+        private String title;
+        private CharSequence message;
+        private String confirm, cancel;
+        private int msgGravity;
+        private boolean isTouchable = false, showCancel = true, cancelable = true;
+        private IDialogCommonListener clickListener;
 
         public Builder(Context context) {
             this.context = context;
@@ -148,9 +154,15 @@ public class CTCommonDialog extends AlertDialog{
             return this;
         }
 
-        public Builder setMessage(String message) {
+        public Builder setMessage(CharSequence message) {
             if (TextUtils.isEmpty(message)) return this;
             this.message = message;
+            return this;
+        }
+
+        public Builder setMessageGravity(int gravity) {
+            if (TextUtils.isEmpty(message)) return this;
+            this.msgGravity = gravity;
             return this;
         }
 
@@ -187,7 +199,7 @@ public class CTCommonDialog extends AlertDialog{
         }
 
         public CTCommonDialog create() {
-            final CTCommonDialog dialog = new CTCommonDialog(context, title, message, cancel, confirm, showCancel, cancelable, isTouchable, clickListener);
+            final CTCommonDialog dialog = new CTCommonDialog(context, title, message, cancel, confirm, msgGravity, showCancel, cancelable, isTouchable, clickListener);
             dialog.show();
             return dialog;
         }

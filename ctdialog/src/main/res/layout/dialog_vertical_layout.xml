@@ -19,7 +19,7 @@
             android:paddingRight="20dp"
             android:text="@string/ct_dialog_title"
             android:textColor="@color/ct_black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_msg"
@@ -27,14 +27,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_title"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="19dp"
+            android:ellipsize="end"
+            android:maxLines="6"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:maxLines="6"
-            android:ellipsize="end"
             android:text=""
             android:textColor="@color/ct_black"
-            android:textSize="14sp"/>
+            android:textSize="16sp" />
 
         <View
             android:id="@+id/line"
@@ -58,9 +58,10 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/selector_shape_dialog_middle"
-            android:textColor="@color/ct_colorPrimary"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:text=""
+            android:textColor="@color/ct_black"
+            android:textSize="16sp" />
 
         <View
             android:id="@+id/line1"
@@ -73,9 +74,10 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/selector_shape_dialog_middle"
-            android:textColor="@color/ct_colorPrimary"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:text=""
+            android:textColor="@color/ct_black"
+            android:textSize="16sp" />
 
         <View
             android:id="@+id/line2"
@@ -88,11 +90,10 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/selector_shape_dialog_bottom_half"
-            android:textColor="@color/ct_colorPrimary"
             android:gravity="center"
             android:text="@string/ct_dialog_cancel"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textColor="@color/ct_black"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.beike.ctdialog.R;
 import com.beike.ctdialog.iterface.IActionClickListener;
+import com.beike.ctdialog.utils.DensityUtil;
 import com.beike.ctdialog.widget.ImageText;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class CTSharePopup extends PopupWindow {
 
     }
 
-    public void addAction(final List<ShareItem> shareItems, int spanCount, final int imageSize, final int textSize, final int textColor, String title, boolean isControl) {
+    public void addAction(final List<ShareItem> shareItems, int spanCount, int paddingSize, int bgColor, final int imageSize, final int textSize, final int textColor, String title, boolean isControl) {
         RecyclerView recyclerView;
         boolean isShowTitle = !TextUtils.isEmpty(title);
 
@@ -68,6 +69,12 @@ public class CTSharePopup extends PopupWindow {
             recyclerView = popupView.findViewById(R.id.rv_controls);
         } else {
             recyclerView = popupView.findViewById(R.id.rv_actions);
+        }
+
+        recyclerView.setBackgroundColor(context.getResources().getColor(bgColor));
+        if (paddingSize > 0) {
+            paddingSize = DensityUtil.dip2px(context, paddingSize);
+            recyclerView.setPadding(paddingSize, 0, paddingSize, 0);
         }
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setLayoutManager(new GridLayoutManager(context, spanCount));
@@ -163,11 +170,13 @@ public class CTSharePopup extends PopupWindow {
         public List<ShareItem> actions = new ArrayList<>();
         public List<ShareItem> controls = new ArrayList<>();
         public IActionClickListener clickListener;
-        public int imageSize = 50, textSize = 12, textColor, spanCount = 4;
+        public int imageSize = 50, textSize = 12, textColor, spanCount = 4, paddingSize = 0;
+        public int bgColor;
 
         public Builder(Context context) {
             this.context = context;
             textColor = context.getResources().getColor(R.color.ct_black);
+            bgColor = R.color.white;
         }
 
         public Builder setTitle(String title) {
@@ -188,6 +197,16 @@ public class CTSharePopup extends PopupWindow {
 
         public Builder addControl(ShareItem shareItem) {
             this.controls.add(shareItem);
+            return this;
+        }
+
+        public Builder setPaddingSize(int paddingSize) {
+            this.paddingSize = paddingSize;
+            return this;
+        }
+
+        public Builder setBgColor(int bgColor) {
+            this.bgColor = bgColor;
             return this;
         }
 
@@ -231,9 +250,9 @@ public class CTSharePopup extends PopupWindow {
 
             popupWindow.installContent();
             popupWindow.setActionClickListener(clickListener);
-            popupWindow.addAction(actions, spanCount, imageSize, textSize, textColor, title, false);
+            popupWindow.addAction(actions, spanCount, paddingSize, bgColor, imageSize, textSize, textColor, title, false);
             if (controls.size() > 0) {
-                popupWindow.addAction(controls, spanCount, imageSize, textSize, textColor, title, true);
+                popupWindow.addAction(controls, spanCount, paddingSize, bgColor, imageSize, textSize, textColor, title, true);
             }
 
             popupWindow.setSize();

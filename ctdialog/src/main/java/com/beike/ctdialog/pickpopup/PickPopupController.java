@@ -64,13 +64,14 @@ public class PickPopupController {
 
     public void addAction(LinkedHashMap<String, Boolean> actionMap, String title) {
         int textViewHeight = context.getResources().getDimensionPixelSize(R.dimen.ct_selector_item_dimen);
+        int lineHeight = context.getResources().getDimensionPixelSize(R.dimen.ct_line_dimen);
         if (linearLayout == null) {
             linearLayout = popuView.findViewById(R.id.linear_add_area);
         }
 
         if (actionMap.size() > 6) {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
-            params.height = textViewHeight * 8;
+            params.height = textViewHeight * 7 + lineHeight * 6;
             scrollView.setLayoutParams(params);
         }
 

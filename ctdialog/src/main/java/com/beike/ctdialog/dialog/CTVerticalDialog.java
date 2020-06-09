@@ -18,21 +18,19 @@ import com.beike.ctdialog.iterface.IDialogVerticalListener;
  * Created by liupeng on 2017/6/19.
  */
 
-public class CTVerticalDialog extends AlertDialog{
+public class CTVerticalDialog extends AlertDialog {
 
     private TextView tvTitle;
     private TextView tvMessage;
-    private TextView tvTop, tvMiddle, tvBottom;
 
     private String title;
-    private String message;
+    private CharSequence message;
     private String top, middle, bottom;
 
     private IDialogVerticalListener verticalListener;
 
-    public CTVerticalDialog(@NonNull Context context, String title, String message, String top, String middle, String bottom, boolean cancelable, boolean outsideCancelable, @Nullable IDialogVerticalListener verticalListener) {
+    public CTVerticalDialog(@NonNull Context context, String title, CharSequence message, String top, String middle, String bottom, boolean cancelable, boolean outsideCancelable, @Nullable IDialogVerticalListener verticalListener) {
         super(context);
-//        this.context = context;
         this.title = title;
         this.message = message;
         this.top = top;
@@ -57,11 +55,11 @@ public class CTVerticalDialog extends AlertDialog{
         getWindow().setAttributes(p);
         getWindow().setBackgroundDrawableResource(R.color.transparent);
 
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        tvMessage = (TextView) findViewById(R.id.tv_msg);
-        tvTop = (TextView) findViewById(R.id.tv_top);
-        tvMiddle = (TextView) findViewById(R.id.tv_middle);
-        tvBottom = (TextView) findViewById(R.id.tv_bottom);
+        tvTitle = findViewById(R.id.tv_title);
+        tvMessage = findViewById(R.id.tv_msg);
+        TextView tvTop = findViewById(R.id.tv_top);
+        TextView tvMiddle = findViewById(R.id.tv_middle);
+        TextView tvBottom = findViewById(R.id.tv_bottom);
 
         if (title == null) {
             tvTitle.setVisibility(View.GONE);
@@ -75,18 +73,21 @@ public class CTVerticalDialog extends AlertDialog{
             tvMessage.setText(message);
         }
 
-        if (!TextUtils.isEmpty(top)){
+        if (top == null) {
+            tvTop.setVisibility(View.GONE);
+            findViewById(R.id.line1).setVisibility(View.GONE);
+        } else {
             tvTop.setText(top);
         }
 
         if (middle == null) {
             tvMiddle.setVisibility(View.GONE);
-            findViewById(R.id.line1).setVisibility(View.GONE);
+            findViewById(R.id.line2).setVisibility(View.GONE);
         } else {
             tvMiddle.setText(middle);
         }
 
-        if (!TextUtils.isEmpty(bottom)){
+        if (bottom != null) {
             tvBottom.setText(bottom);
         }
 
@@ -134,11 +135,12 @@ public class CTVerticalDialog extends AlertDialog{
     }
 
     public static class Builder {
-        public Context context;
-        public String title, message;
-        public String top, middle, bottom;
-        public boolean isTouchable = false, cancelable = true;
-        public IDialogVerticalListener clickListener;
+        private Context context;
+        private String title;
+        private CharSequence message;
+        private String top, middle, bottom;
+        private boolean isTouchable = false, cancelable = true;
+        private IDialogVerticalListener clickListener;
 
         public Builder(Context context) {
             this.context = context;
@@ -150,21 +152,9 @@ public class CTVerticalDialog extends AlertDialog{
             return this;
         }
 
-        public Builder setMessage(String message) {
+        public Builder setMessage(CharSequence message) {
             if (TextUtils.isEmpty(message)) return this;
             this.message = message;
-            return this;
-        }
-
-        public Builder setConfirm(String confirm) {
-            if (TextUtils.isEmpty(confirm)) return this;
-            this.top = confirm;
-            return this;
-        }
-
-        public Builder setCancel(String cancel) {
-            if (TextUtils.isEmpty(cancel)) return this;
-            this.bottom = cancel;
             return this;
         }
 

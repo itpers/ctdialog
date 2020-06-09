@@ -1,14 +1,19 @@
 package com.beike.ctwidget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.beike.ctdialog.dialog.CTCheckBoxDialog;
+import com.beike.ctdialog.dialog.CTCommonDialog;
 import com.beike.ctdialog.dialog.CTIconDialog;
 import com.beike.ctdialog.dialog.CTVerticalDialog;
 import com.beike.ctdialog.dialog.CTInputDialog;
@@ -150,6 +155,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showCommonDialog() {
+        new CTCommonDialog.Builder(context)
+                .setTitle("测试测试测试")
+                .setMessage("收藏和分享链接自动失效。\n请注意清除“最近”和“传输”列表下的相\n关记录哦。")
+                .setMessageGravity(Gravity.CENTER)
+                .setShowCancel(false)
+                .setDialogListener(new IDialogCommonListener() {
+                    @Override
+                    public void onConfirm() {
+
+                    }
+
+                    @Override
+                    public void onCancel(boolean isButton) {
+
+                    }
+                }).create();
+    }
+
+
+    public void showIconDialog() {
         new CTIconDialog.Builder(context)
                 .setTitle("测试测试测试")
                 .setMessage("收藏和分享链接自动失效。\n请注意清除“最近”和“传输”列表下的相\n关记录哦。")
@@ -176,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 .setInputDefault("原名字")
                 .setInputHint("请输入新名称")
                 .setSelectAll(true)
-//                .setLengthLimit(5)
+                .setLengthLimit(5)
                 .setInputDialogListener(new IDialogInputListener() {
                     @Override
                     public void onConfirm(String input) {
@@ -191,18 +216,61 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showVerticalDialog() {
+
+        final SpannableStringBuilder spanStr = new SpannableStringBuilder("分享链接的分享码为：0YBSTV");
+        spanStr.setSpan(new ForegroundColorSpan(Color.BLUE), 10, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         new CTVerticalDialog.Builder(context)
-                .setTitle("您对XXX提供的服务还满意吗？")
+                .setTitle("设置成功")
+                .setMessage(spanStr)
                 .setTop("不是很满意")
                 .setMiddle("非常满意")
                 .setBottom("非常满意，鼓励一下")
                 .setDialogListener(new IDialogVerticalListener() {
                     @Override
                     public void onTop() {
+                        new CTVerticalDialog.Builder(context)
+                                .setTitle("设置成功")
+                                .setMessage(spanStr)
+                                .setMiddle("非常满意")
+                                .setBottom("非常满意，鼓励一下")
+                                .setDialogListener(new IDialogVerticalListener() {
+                                    @Override
+                                    public void onTop() {
+                                    }
+
+                                    @Override
+                                    public void onMiddle() {
+
+                                    }
+
+                                    @Override
+                                    public void onBottom() {
+
+                                    }
+                                }).create();
                     }
 
                     @Override
                     public void onMiddle() {
+                        new CTVerticalDialog.Builder(context)
+                                .setTitle("设置成功")
+                                .setMessage(spanStr)
+                                .setBottom("非常满意，鼓励一下")
+                                .setDialogListener(new IDialogVerticalListener() {
+                                    @Override
+                                    public void onTop() {
+                                    }
+
+                                    @Override
+                                    public void onMiddle() {
+
+                                    }
+
+                                    @Override
+                                    public void onBottom() {
+
+                                    }
+                                }).create();
 
                     }
 
@@ -358,29 +426,27 @@ public class MainActivity extends AppCompatActivity {
                 .addShare(new ShareItem(R.drawable.ic_share_to_wx_friend, "微信好友"))
                 .addShare(new ShareItem(R.drawable.ic_share_to_wx_timeline, "朋友圈"))
                 .addShare(new ShareItem(R.drawable.ic_share_to_dd, "钉钉"))
-                .addShare(new ShareItem(R.drawable.ic_share_to_wx_friend, "微信好友"))
-                .addShare(new ShareItem(R.drawable.ic_share_to_wx_timeline, "朋友圈"))
-                .addShare(new ShareItem(R.drawable.ic_share_to_dd, "钉钉"))
-                .addControl(new ShareItem(R.drawable.ic_web_control_refresh, "刷新"))
+                .setPaddingSize(40)
+                .setSpanCount(3)
                 .setTitle(R.string.ct_dialog_title)
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
                         switch (buttonIndex) {
-                            case 0:
+                            case -1:
                                 Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
                                 showShare1();
                                 break;
-                            case 1:
+                            case 0:
                                 Toast.makeText(context, "微信好友", Toast.LENGTH_SHORT).show();
                                 break;
-                            case 2:
+                            case 1:
                                 Toast.makeText(context, "朋友圈", Toast.LENGTH_SHORT).show();
                                 break;
-                            case 3:
+                            case 2:
                                 Toast.makeText(context, "钉钉", Toast.LENGTH_SHORT).show();
                                 break;
-                            case 4:
+                            case 3:
                                 Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
 
                         }
@@ -400,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(int buttonIndex) {
                         switch (buttonIndex) {
-                            case 0:
+                            case -1:
                                 Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
                                 showShare2();
                                 break;
@@ -428,12 +494,13 @@ public class MainActivity extends AppCompatActivity {
                 .addShare(new ShareItem(R.drawable.ic_share_to_wx_friend, "微信好友"))
                 .addShare(new ShareItem(R.drawable.ic_share_to_wx_timeline, "朋友圈"))
                 .addShare(new ShareItem(R.drawable.ic_share_to_dd, "钉钉"))
+                .setBgColor(R.color.ct_red)
                 .setTitle("分享到:")
                 .setActionClickListener(new IActionClickListener() {
                     @Override
                     public void onClick(int buttonIndex) {
                         switch (buttonIndex) {
-                            case 0:
+                            case -1:
                                 Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
                                 break;
                             case 1:

@@ -20,15 +20,13 @@
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/white"
+                android:layout_height="26dp"
+                android:background="#FAFAFA"
                 android:gravity="center"
-                android:minHeight="40dp"
-                android:padding="10dp"
                 android:text="标题"
                 android:textColor="@color/ct_progress_bar_color"
-                android:textSize="13sp"
-                android:visibility="gone" />
+                android:textSize="12sp"
+                android:visibility="visible" />
 
             <View
                 android:id="@+id/line_title"

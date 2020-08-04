@@ -7,7 +7,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 26
-        versionName "1.7.2"
+        versionName "1.7.3"
 
     }
     buildTypes {

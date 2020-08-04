@@ -16,18 +16,21 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-
-            <FrameLayout
+            <com.beike.ctdialog.widget.CornerLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/ct_red">
+                app:radius="10dp"
+                app:radiusBLX="400dp"
+                app:radiusBLY="40dp"
+                app:radiusBRX="400dp"
+                app:radiusBRY="40dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/card_light_shadow_radius_20" />
+                    android:background="@color/ct_red" />
 
-            </FrameLayout>
+            </com.beike.ctdialog.widget.CornerLayout>
 
             <com.beike.ctdialog.widget.EllipsisTextView
                 android:id="@+id/tv_text"

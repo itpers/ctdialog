@@ -55,7 +55,7 @@ public class CTInputDialog extends AlertDialog {
         if (getWindow() != null) {
             DisplayMetrics metrics = new DisplayMetrics();
             getWindow().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            int screenWidth = metrics.widthPixels > metrics.heightPixels ? metrics.heightPixels : metrics.widthPixels;
+            int screenWidth = Math.min(metrics.widthPixels, metrics.heightPixels);
             WindowManager.LayoutParams p = getWindow().getAttributes();
             p.dimAmount = 0.4f;
             p.width = (int) (screenWidth * 0.8);
@@ -63,10 +63,10 @@ public class CTInputDialog extends AlertDialog {
             getWindow().setBackgroundDrawableResource(R.color.transparent);
         }
 
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        etContent = (EditText) findViewById(R.id.tv_msg);
-        tvCancel = (TextView) findViewById(R.id.tv_cancel);
-        tvConfirm = (TextView) findViewById(R.id.tv_confirm);
+        tvTitle = findViewById(R.id.tv_title);
+        etContent = findViewById(R.id.tv_msg);
+        tvCancel = findViewById(R.id.tv_cancel);
+        tvConfirm = findViewById(R.id.tv_confirm);
 
         if (title == null) {
             tvTitle.setVisibility(View.GONE);

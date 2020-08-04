@@ -19,4 +19,20 @@
         <attr name="cTextColor" format="color|reference" />
         <attr name="cTextSize" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="CornerLayout">
+        <attr name="radius" format="dimension" />
+        <attr name="radiusTL" format="dimension" />
+        <attr name="radiusTR" format="dimension" />
+        <attr name="radiusBL" format="dimension" />
+        <attr name="radiusBR" format="dimension" />
+        <attr name="radiusTLX" format="dimension" />
+        <attr name="radiusTRX" format="dimension" />
+        <attr name="radiusBLX" format="dimension" />
+        <attr name="radiusBRX" format="dimension" />
+        <attr name="radiusTLY" format="dimension" />
+        <attr name="radiusTRY" format="dimension" />
+        <attr name="radiusBLY" format="dimension" />
+        <attr name="radiusBRY" format="dimension" />
+    </declare-styleable>
 </resources>
